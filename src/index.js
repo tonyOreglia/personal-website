@@ -101,6 +101,41 @@ class Game extends React.Component {
     });
   }
 
+  startNewGameAsBlack = () => {
+    this.startNewGame('b')
+  }
+
+  startNewGameAsWhite = () => {
+    this.startNewGame('w')
+  }
+
+  startNewGame = (humanColor) => {
+    let playersTurn = false;
+    let engineThinking = true;
+    if (humanColor === 'w') {
+      playersTurn = true;
+      engineThinking = false;
+    }
+    this.props.chess.reset()
+    this.setState({
+      history: [{
+        position: this.props.chess.fen(),
+        move: "",
+      }],
+      ply: 0,
+      selectedSq: null,
+      isReady: false,
+      engineThinking,
+      playersTurn,
+    })
+    this.ws.send("ucinewgame")
+    this.ws.send("isready")
+    this.ws.send(`position ${this.props.chess.fen()}`)
+    if (humanColor === 'b') {
+      this.ws.send("go")
+    }
+  }
+
   handleClick(i) {
     // unset the selected square if it's reclicked or 
     // it's not the players turn
@@ -160,9 +195,17 @@ class Game extends React.Component {
             <Board
               position={current.position}
               onClick={(i) => this.handleClick(i)}
-              selected={this.state.selectedSq}
-            />
+              selected={this.state.selectedSq} />
           </div>
+          
+          <div className="game-info">
+            <div>
+              <button onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
+              <button className="game-info"  onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
+            </div>
+          </div>
+
+
         </div>
       </div>
     );
