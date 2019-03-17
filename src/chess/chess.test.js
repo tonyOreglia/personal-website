@@ -1,4 +1,4 @@
-import { indexToAlgebraic } from "./chess";
+import { indexToAlgebraic, lookupPieceToRender } from "./chess";
 
 describe("indexToAlgebraic", () => {
   it("should convert 0 to a8", () => {
@@ -16,5 +16,24 @@ describe("indexToAlgebraic", () => {
   it("should convert 45 to a1", () => {
     const result = indexToAlgebraic(45)
     expect(result).toEqual("f3");
+  });
+});
+
+describe("lookupPieceToRender", () => {
+  it("should return white rook", () => {
+    const result = lookupPieceToRender({type: 'r', color: 'w'});
+    expect(result).toEqual("♖");
+  });
+  it("should return black king", () => {
+    const result = lookupPieceToRender({type: 'k', color: 'b'});
+    expect(result).toEqual("♚");
+  });
+  it("should return white pawn", () => {
+    const result = lookupPieceToRender({type: 'p', color: 'w'});
+    expect(result).toEqual("♙");
+  });
+  it("should return black pawn", () => {
+    const result = lookupPieceToRender({type: 'p', color: 'b'});
+    expect(result).toEqual("♟");
   });
 });

@@ -1,3 +1,17 @@
+export function lookupPieceToRender(value) {
+  const black = ['♚','♛', '♜', '♞', '♝', '♟']
+  const white = ['♔', '♕', '♖', '♘', '♗', '♙']
+  if (!value) {
+    return null
+  }
+  const pieceArray = value.color === 'w' ? white : black;
+  const map = {
+    'k': 0, 'q': 1, 'r': 2, 'n': 3, 'b': 4, 'p': 5
+  }
+  const pieceIndex = map[value.type]
+  return pieceArray[pieceIndex]
+}
+
 export function indexToAlgebraic(index) {
 	const column = index % 8
   const row = 8 - Math.floor(index / 8)

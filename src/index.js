@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import bunyan from 'bunyan';
 import { websocketConnect } from './websocket'
-const Chess = require('./chess').Chess;
-
+import { indexToAlgebraic, lookupPieceToRender } from './chess/chess'
+import Chess from 'chess.js';
 const logger = bunyan.createLogger({
   name: 'chess-board'
 });
 
 function Square(props) {
+  logger.info(`value: ${JSON.stringify(props.value)}`)
+  const piece = lookupPieceToRender(props.value)
   const row = ~~(props.index / 8)
   const darkSq = (props.index%2 + (row%2))%2 !== 0;
   let background = null;
@@ -18,27 +20,24 @@ function Square(props) {
   }
   let button =
   <button className="light-square" onClick={props.onClick} style={{ background: background }}>
-    {props.value}
+    {piece}
   </button>
   if (darkSq) {
     button =
     <button className="dark-square" onClick={props.onClick} style={{ background: background }}>
-      {props.value}
+      {piece}
     </button>
   }
   return (button);
 }
 
 class Board extends React.Component {
-  renderSquare(i) {
-    let selected = false;
-    if (i === this.props.selected) {
-      selected = true;
-    }
+  renderSquare(i, value) {
+    let selected = i === this.props.selected;
     return (
       <Square
         key={i}
-        value={this.props.squares[i]}
+        value={value}
         onClick={() => this.props.onClick(i)}
         index={i}
         selected={selected}
@@ -47,12 +46,16 @@ class Board extends React.Component {
   }
 
   render() {
+    const position = Chess();
+    position.load(this.props.position);
     let sqs;
     let rows = [];
+    let index;
     for (let i = 0; i < 8; i++) {
       sqs = [];
       for (let j = 0; j < 8; j++) {
-        sqs.push(this.renderSquare(j + i*8));
+        index = j + i*8;
+        sqs.push(this.renderSquare(index, position.get(indexToAlgebraic(index))));
       }
       rows.push(
       <div key={i} className="board-row">
@@ -71,23 +74,19 @@ class Board extends React.Component {
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    const chess = new Chess();
-    const blackStartingPos = [
-      '♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜',
-      '♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟']
-    const whiteStartingPos = [
-      '♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙',
-      '♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖']
     this.state = {
       history: [{
-        squares: blackStartingPos.concat(Array(32).fill(null), whiteStartingPos)
+        position: this.props.chess.fen(),
+        move: "",
       }],
-      stepNumber: 0,
+      ply: 0,
       selectedSq: null,
       engineName: "",
       engineAuthor: "",
       uciOK: false,
       isReady: false,
+      engineThinking: false,
+      playersTurn: true,
     };
     this.ws = websocketConnect("ws://localhost:8081/uci");
     this.ws.onmessage = (event) => {
@@ -98,52 +97,59 @@ class Game extends React.Component {
 
   jumpTo(step) {
     this.setState({
-      stepNumber: step
+      ply: step
     });
   }
 
   handleClick(i) {
-    // unset the selected square if it's reclicked
-    if (i === this.state.selectedSq) {
+    // unset the selected square if it's reclicked or 
+    // it's not the players turn
+    if (i === this.state.selectedSq || !this.state.playersTurn) {
       this.setState({
         selectedSq: null
       });
       return;
     }
 
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const board = current.squares.slice();
-    const previouslySelectedSq = this.state.selectedSq
-    
-    const previouslySelectedSquareContainsPiece = previouslySelectedSq != null && board[previouslySelectedSq] !== null
-    if (previouslySelectedSquareContainsPiece) {
-      // const moveAlgebraic = this.convertToAlgebraic(previouslySelectedSq, i)
-
-      board[i] = board[previouslySelectedSq];
-      board[previouslySelectedSq] = null;
+    // if no sq already selected, just highlight the clicked sq
+    if (this.state.selectedSq === null) {
       this.setState({
-        history: history.concat([{
-          squares: board
-        }]),
-        selectedSq: null,
-        stepNumber: history.length,
-      })
+        selectedSq: i
+      });
       return;
     }
-    
+
+    const from = indexToAlgebraic(this.state.selectedSq)
+    const to = indexToAlgebraic(i)
+    const move = this.props.chess.move({ from, to })
+
+    if (move) {
+      const history = this.state.history.slice();
+      this.setState({
+        history: history.concat([{
+          position: this.props.chess.fen(),
+          move: move
+        }]),
+        selectedSq: null,
+        ply: history.length,
+        playersTurn: false,
+        engineThinking: true,
+      })
+      // tell engine that move has been made
+      this.ws.send(`position ${this.props.chess.fen()}`)
+      // tell engine to think of a move!
+      this.ws.send(`go`)
+      return;
+    }
+
     this.setState({
       selectedSq: i
     });
   }
 
-  convertToAlgebraic() {
-
-  }
-
   render() {
     const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const current = history[this.state.ply];
 
     return (
       <div>
@@ -152,7 +158,7 @@ class Game extends React.Component {
         <div className="game">
           <div>
             <Board
-              squares={current.squares}
+              position={current.position}
               onClick={(i) => this.handleClick(i)}
               selected={this.state.selectedSq}
             />
@@ -183,6 +189,7 @@ class Game extends React.Component {
         })
         break;
       case "bestmove":
+        this.handleEngineMove(msgTokens.slice(1));
         break;
       case "copyprotection":
         break;
@@ -201,6 +208,33 @@ class Game extends React.Component {
 
   processInfo(msgTokens) {
     logger.info(`processing info: ${msgTokens.join(" ")}`)
+  }
+
+  handleEngineMove(msgTokens) {
+    const engMv = msgTokens[0];
+    if (engMv.length !== 5) {
+      logger.error(`invalid length engine move: ${engMv}`)
+    }
+    const from = engMv.slice(0,2)
+    const to = engMv.slice(2,4)
+    logger.info(`engine move from: ${from}. engine move to: ${to}.`);
+
+    const move = this.props.chess.move({ from: engMv.slice(0,2), to: engMv.slice(2,4) })
+    if (move) {
+      const history = this.state.history.slice();
+      this.setState({
+        history: history.concat([{
+          position: this.props.chess.fen(),
+          move: move
+        }]),
+        selectedSq: null,
+        ply: history.length,
+        playersTurn: true,
+        engineThinking: false,
+      });
+      return
+    }
+    logger.error(`invalid engine move: ${engMv}`)
   }
   
   processId(msgTokens) {
@@ -232,6 +266,8 @@ class Game extends React.Component {
 }
 
 ReactDOM.render(
-  <Game />,
+  <Game 
+    chess={Chess()}
+  />,
   document.getElementById('root')
 );
