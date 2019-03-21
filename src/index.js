@@ -9,8 +9,10 @@ const logger = bunyan.createLogger({
   name: 'chess-board'
 });
 
+const WHITE = 'w';
+const BLACK = 'b';
+
 function Square(props) {
-  logger.info(`value: ${JSON.stringify(props.value)}`)
   const piece = lookupPieceToRender(props.value)
   const row = ~~(props.index / 8)
   const darkSq = (props.index%2 + (row%2))%2 !== 0;
@@ -87,6 +89,7 @@ class Game extends React.Component {
       isReady: false,
       engineThinking: false,
       playersTurn: true,
+      playerColor: WHITE,
     };
     this.ws = websocketConnect("ws://localhost:8081/uci");
     this.ws.onmessage = (event) => {
@@ -102,17 +105,17 @@ class Game extends React.Component {
   }
 
   startNewGameAsBlack = () => {
-    this.startNewGame('b')
+    this.startNewGame(BLACK)
   }
 
   startNewGameAsWhite = () => {
-    this.startNewGame('w')
+    this.startNewGame(WHITE)
   }
 
   startNewGame = (humanColor) => {
     let playersTurn = false;
     let engineThinking = true;
-    if (humanColor === 'w') {
+    if (humanColor === WHITE) {
       playersTurn = true;
       engineThinking = false;
     }
@@ -127,11 +130,12 @@ class Game extends React.Component {
       isReady: false,
       engineThinking,
       playersTurn,
+      playerColor: humanColor,
     })
     this.ws.send("ucinewgame")
     this.ws.send("isready")
     this.ws.send(`position ${this.props.chess.fen()}`)
-    if (humanColor === 'b') {
+    if (humanColor === BLACK) {
       this.ws.send("go")
     }
   }
@@ -163,7 +167,7 @@ class Game extends React.Component {
       this.setState({
         history: history.concat([{
           position: this.props.chess.fen(),
-          move: move
+          move: move,
         }]),
         selectedSq: null,
         ply: history.length,
@@ -182,9 +186,54 @@ class Game extends React.Component {
     });
   }
 
+  returnToPreviousMove = (i) => {
+    console.log(this.state.history)
+    console.log(`i: ${i}`)
+    const newHistory = this.state.history.slice(0,i+1)
+    console.log(newHistory)
+    this.props.chess.load(this.state.history[i].position)
+    if (this.props.chess.turn() === this.state.playerColor) {
+
+    }
+    this.setState({
+      history: newHistory,
+      selectedSq: null,
+      ply: newHistory.length - 1,
+      playersTurn: this.props.chess.turn() === this.state.playerColor,
+      engineThinking: !(this.props.chess.turn() === this.state.playerColor),
+    })
+    this.ws.send("isready")
+    this.ws.send(`position ${this.props.chess.fen()}`)
+    if (!(this.props.chess.turn() === this.state.playerColor)) {
+      this.ws.send("go")
+    }
+  } 
+
   render() {
     const history = this.state.history;
     const current = history[this.state.ply];
+
+    const gameHistory = () => {
+      let moves = [];
+      this.state.history.forEach((position, i, history) => {
+        if (i%2 === 0 || i === 0) { return }
+        if (i === history.length - 1) {
+          moves.push(
+            <div class="button_cont" key={i}>
+              <button class="button button-move" key={i*2} onClick={() => this.returnToPreviousMove(i)}>{`${position.move.from}, ${position.move.to}`}</button>
+            </div>
+          )
+          return;
+        }
+        moves.push(
+        <div class="button_cont" key={i}>
+          <button class="button button-move" key={i*2} onClick={() => this.returnToPreviousMove(i)}>{`${position.move.from}, ${position.move.to}`}</button>
+          <button class="button button-move" key={i*2 + 1} onClick={() => this.returnToPreviousMove(i+1)}>{`${history[i+1].move.from}, ${history[i+1].move.to}`}</button>
+        </div>
+        )
+      });
+      return moves;
+    }
 
     return (
       <div>
@@ -200,9 +249,10 @@ class Game extends React.Component {
           
           <div className="game-info">
             <div>
-              <button onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
-              <button className="game-info"  onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
+              <button class="button button-newgame" onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
+              <button class="button button-newgame" onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
             </div>
+              {gameHistory()}
           </div>
 
 
@@ -213,7 +263,6 @@ class Game extends React.Component {
   
   processEngineMessage(msg) {
     const msgTokens = msg.split(" ")
-    logger.info(`Recieved message: ${msg}`);
     switch(msgTokens[0]) {
       case "id":
         logger.info("engine reporting id")
@@ -268,7 +317,7 @@ class Game extends React.Component {
       this.setState({
         history: history.concat([{
           position: this.props.chess.fen(),
-          move: move
+          move: move,
         }]),
         selectedSq: null,
         ply: history.length,
