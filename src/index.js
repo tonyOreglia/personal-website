@@ -88,7 +88,7 @@ class Game extends React.Component {
       engineThinking: false,
       playersTurn: true,
     };
-    this.ws = websocketConnect("ws://localhost:8081/uci");
+    this.ws = websocketConnect("ws://206.189.195.210:8081/uci");
     this.ws.onmessage = (event) => {
       const msg = event.data
       this.processEngineMessage(msg)
