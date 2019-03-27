@@ -230,9 +230,6 @@ class Game extends React.Component {
     const newHistory = this.state.history.slice(0,i+1)
     this.props.chess.load(this.state.history[i].position)
     const takenPieces = this.state.history[i].takenPieces;
-    // if (this.props.chess.turn() === this.state.playerColor) {
-
-    // }
     this.setState({
       history: newHistory,
       selectedSq: null,
