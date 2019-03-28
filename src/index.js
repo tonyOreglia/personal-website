@@ -33,6 +33,31 @@ function Square(props) {
   return (button);
 }
 
+function TakenPieces(props) {
+  const takenWhitePieces = props.takenPieces.filter(takenPiece => {
+    return takenPiece.color === 'w'
+  });
+  const displayTakenWhitePieces = takenWhitePieces.map(takenWhitePiece => {
+    return lookupPieceToRender(takenWhitePiece);
+  });
+  const takenBlackPieces = props.takenPieces.filter(takenPiece => {
+    return takenPiece.color === 'b'
+  });
+  const displayTakenBlackPieces = takenBlackPieces.map(takenWhitePiece => {
+    return lookupPieceToRender(takenWhitePiece);
+  });
+  return (
+    <div>
+      <div>
+        {displayTakenBlackPieces}
+      </div>
+      <div>
+        {displayTakenWhitePieces}
+      </div>
+    </div>
+  )
+}
+
 class Board extends React.Component {
   renderSquare(i, value) {
     let selected = i === this.props.selected;
@@ -80,6 +105,7 @@ class Game extends React.Component {
       history: [{
         position: this.props.chess.fen(),
         move: "",
+        takenPieces: [],
       }],
       ply: 0,
       selectedSq: null,
@@ -90,8 +116,9 @@ class Game extends React.Component {
       engineThinking: false,
       playersTurn: true,
       playerColor: WHITE,
+      takenPieces: [],
     };
-    this.ws = websocketConnect("ws://206.189.195.210:8081/uci");
+    this.ws = websocketConnect("ws://localhost:8081/uci");
     this.ws.onmessage = (event) => {
       const msg = event.data
       this.processEngineMessage(msg)
@@ -124,6 +151,7 @@ class Game extends React.Component {
       history: [{
         position: this.props.chess.fen(),
         move: "",
+        takenPieces: []
       }],
       ply: 0,
       selectedSq: null,
@@ -160,14 +188,17 @@ class Game extends React.Component {
 
     const from = indexToAlgebraic(this.state.selectedSq)
     const to = indexToAlgebraic(i)
+    const takenPiece = this.props.chess.get(to);
     const move = this.props.chess.move({ from, to })
 
     if (move) {
+      this.updateTakenPieces(takenPiece)
       const history = this.state.history.slice();
       this.setState({
         history: history.concat([{
           position: this.props.chess.fen(),
           move: move,
+          takenPieces: this.state.takenPieces.slice()
         }]),
         selectedSq: null,
         ply: history.length,
@@ -186,21 +217,26 @@ class Game extends React.Component {
     });
   }
 
-  returnToPreviousMove = (i) => {
-    console.log(this.state.history)
-    console.log(`i: ${i}`)
-    const newHistory = this.state.history.slice(0,i+1)
-    console.log(newHistory)
-    this.props.chess.load(this.state.history[i].position)
-    if (this.props.chess.turn() === this.state.playerColor) {
-
+  updateTakenPieces = (takenPiece) => {
+    if (takenPiece !== null) {
+      const takenPieces = this.state.takenPieces.concat(takenPiece)
+      this.setState({
+        takenPieces
+      });
     }
+  }
+
+  returnToPreviousMove = (i) => {
+    const newHistory = this.state.history.slice(0,i+1)
+    this.props.chess.load(this.state.history[i].position)
+    const takenPieces = this.state.history[i].takenPieces;
     this.setState({
       history: newHistory,
       selectedSq: null,
       ply: newHistory.length - 1,
       playersTurn: this.props.chess.turn() === this.state.playerColor,
       engineThinking: !(this.props.chess.turn() === this.state.playerColor),
+      takenPieces
     })
     this.ws.send("isready")
     this.ws.send(`position ${this.props.chess.fen()}`)
@@ -246,7 +282,6 @@ class Game extends React.Component {
               onClick={(i) => this.handleClick(i)}
               selected={this.state.selectedSq} />
           </div>
-          
           <div className="game-info">
             <div>
               <button class="button button-newgame" onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
@@ -254,9 +289,11 @@ class Game extends React.Component {
             </div>
               {gameHistory()}
           </div>
-
-
         </div>
+        <div className="second-title">
+          <TakenPieces
+            takenPieces = {this.state.takenPieces} />
+        </div>  
       </div>
     );
   }
@@ -309,15 +346,18 @@ class Game extends React.Component {
     }
     const from = engMv.slice(0,2)
     const to = engMv.slice(2,4)
+    const takenPiece = this.props.chess.get(to)
     logger.info(`engine move from: ${from}. engine move to: ${to}.`);
 
     const move = this.props.chess.move({ from: engMv.slice(0,2), to: engMv.slice(2,4) })
     if (move) {
+      this.updateTakenPieces(takenPiece)
       const history = this.state.history.slice();
       this.setState({
         history: history.concat([{
           position: this.props.chess.fen(),
           move: move,
+          takenPieces: this.state.takenPieces.slice()
         }]),
         selectedSq: null,
         ply: history.length,
