@@ -378,7 +378,7 @@ class Game extends React.Component {
           break
         }
         this.setState({
-          engineName: `Running Engine - ${msgTokens.slice(1).join(" ")}`
+          engineName: `Running Engine - ${msgTokens.slice(1).join(" ")} (thalita is beautiful)`
         });
         break;
       case "author":
