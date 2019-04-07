@@ -388,7 +388,7 @@ class Game extends React.Component {
           break
         }
         this.setState({
-          engineAuthor: `created by ${msgTokens.slice(1).join(" ")}`
+          engineAuthor: `Created by ${msgTokens.slice(1).join(" ")}`
         })
         break;
       default:
