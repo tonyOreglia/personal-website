@@ -1,9 +1,5 @@
 export function websocketConnect(url) {
-  const ws = new WebSocket(url, {
-      protocolVersion: 8,
-      rejectUnauthorized: false
-    }
-    );
+  const ws = new WebSocket(url);
   ws.addEventListener('open', (event) => {
     ws.send('uci');
   });
