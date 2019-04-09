@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "glee",
+  "alias": "tonycodes.com",
   "builds": [
       { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
   ]
