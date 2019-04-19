@@ -1,7 +1,0 @@
-{
-  "version": 2,
-  "name": "glee",
-  "builds": [
-      { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
-  ]
-}
