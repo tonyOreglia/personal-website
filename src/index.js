@@ -21,12 +21,12 @@ function Square(props) {
     background = 'rgb(255, 246, 124)';
   }
   let button =
-  <button className="light-square" onClick={props.onClick} style={{ background: background }}>
+  <button className="square light" onClick={props.onClick} style={{ background: background }}>
     {piece}
   </button>
   if (darkSq) {
     button =
-    <button className="dark-square" onClick={props.onClick} style={{ background: background }}>
+    <button className="square dark" onClick={props.onClick} style={{ background: background }}>
       {piece}
     </button>
   }
@@ -118,7 +118,7 @@ class Game extends React.Component {
       playerColor: WHITE,
       takenPieces: [],
     };
-    this.ws = websocketConnect("ws://localhost:8081/uci");
+    this.ws = websocketConnect("ws://206.189.195.210:8081/uci");
     this.ws.onmessage = (event) => {
       const msg = event.data
       this.processEngineMessage(msg)
@@ -276,24 +276,21 @@ class Game extends React.Component {
         <header className="main-title" >{this.state.engineName}</header>
         <header className="second-title" >{this.state.engineAuthor}</header>
         <div className="game">
-          <div>
-            <Board
-              position={current.position}
-              onClick={(i) => this.handleClick(i)}
-              selected={this.state.selectedSq} />
-          </div>
+          <Board
+            position={current.position}
+            onClick={(i) => this.handleClick(i)}
+            selected={this.state.selectedSq}
+          />
           <div className="game-info">
-            <div>
               <button class="button button-newgame" onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
               <button class="button button-newgame" onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
-            </div>
               {gameHistory()}
           </div>
-        </div>
         <div className="second-title">
           <TakenPieces
             takenPieces = {this.state.takenPieces} />
         </div>  
+        </div>
       </div>
     );
   }

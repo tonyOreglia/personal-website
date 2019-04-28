@@ -7,6 +7,10 @@ ol, ul {
   padding-left: 30px;
 }
 
+.board-row {
+  display: flex;
+}
+
 .board-row:after {
   clear: both;
   content: "";
@@ -17,38 +21,32 @@ ol, ul {
   margin-bottom: 10px;
 }
 
-.light-square {
+.square {
+  border: 1px solid #999;
+  float: left;
+  line-height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  font-size: 34px;
+  height: 4rem;
+  width: 4rem;
+}
+
+.square.light {
   background: rgb(223, 196, 171);
-  border: 1px solid #999;
-  float: left;
-  line-height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  font-size: 34px;
-  height: 54px;
-  width: 54px;
 }
 
-.dark-square {
+.square.dark {
   background: rgb(44, 91, 153);
-  border: 1px solid #999;
-  float: left;
-  line-height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  font-size: 34px;
-  height: 54px;
-  width: 54px;
 }
 
 
-.dark-square:focus {
+.square-dark:focus {
   outline: none;
 }
 
-.light-square:focus {
+.square-light:focus {
   outline: none;
 }
 
@@ -58,8 +56,7 @@ ol, ul {
 }
 
 .game {
-  display: flex;
-  justify-content: center;
+  display: flex; 
 }
 
 .main-title {
