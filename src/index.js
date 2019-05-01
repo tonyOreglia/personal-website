@@ -118,7 +118,7 @@ class Game extends React.Component {
       playerColor: WHITE,
       takenPieces: [],
     };
-    this.ws = websocketConnect("wss://157.230.65.223:443/uci");
+    this.ws = websocketConnect("wss://157.230.65.223:8081/uci");
     this.ws.onmessage = (event) => {
       const msg = event.data
       this.processEngineMessage(msg)
