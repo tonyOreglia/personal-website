@@ -118,7 +118,7 @@ class Game extends React.Component {
       playerColor: WHITE,
       takenPieces: [],
     };
-    this.ws = websocketConnect("wss://157.230.65.223:8081/uci");
+    this.ws = websocketConnect("wss://157.230.65.223:443/uci");
     this.ws.onmessage = (event) => {
       const msg = event.data
       this.processEngineMessage(msg)
@@ -273,7 +273,7 @@ class Game extends React.Component {
 
     return (
       <div>
-        <header className="main-title" >{this.state.engineName}</header>
+        <header className="main-title" >{this.state.engineName ? this.state.engineName : "Attempting to connect with chess engine via secure websocket..."}</header>
         <header className="second-title" >{this.state.engineAuthor}</header>
         <div className="game">
           <Board
