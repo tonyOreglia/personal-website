@@ -1,7 +1,13 @@
-const config = {};
+import bunyan from 'bunyan';
 
-config.gleeUri = process.env.NODE_ENV === "development" ? 
-      "ws://localhost:8081/uci" : "wss://tonycodes.com:8081/uci";
-
+const config = {
+  gleeUri: process.env.NODE_ENV === "development" ? 
+    "ws://localhost:8081/uci" : "wss://tonycodes.com:8081/uci",
+  WHITE: 'w',
+  BLACK: 'b',
+  logger: bunyan.createLogger({
+    name: 'chess-board'
+  })
+};
 
 export default config;
