@@ -5,6 +5,7 @@ import bunyan from 'bunyan';
 import { websocketConnect } from './websocket'
 import { indexToAlgebraic, lookupPieceToRender } from './chess/chess'
 import Chess from 'chess.js';
+import config from "./config"
 const logger = bunyan.createLogger({
   name: 'chess-board'
 });
@@ -118,7 +119,7 @@ class Game extends React.Component {
       playerColor: WHITE,
       takenPieces: [],
     };
-    this.ws = websocketConnect("wss://tonycodes.com:8081/uci");
+    this.ws = websocketConnect(config.gleeUri);
     this.ws.onmessage = (event) => {
       const msg = event.data
       this.processEngineMessage(msg)
@@ -159,6 +160,7 @@ class Game extends React.Component {
       engineThinking,
       playersTurn,
       playerColor: humanColor,
+      takenPieces: [],
     })
     this.ws.send("ucinewgame")
     this.ws.send("isready")
