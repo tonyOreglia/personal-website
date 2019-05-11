@@ -129,8 +129,23 @@ export default class Game extends React.Component {
     const from = indexToAlgebraic(this.state.selectedSq)
     const to = indexToAlgebraic(i)
     const takenPiece = this.props.chess.get(to);
-    const move = this.props.chess.move({ from, to })
-
+    const movingPiece = this.props.chess.get(from);
+    let promotion = '';
+    console.log(`i: ${i}`)
+    console.log(`moving piece: ${JSON.stringify(movingPiece)}`)
+    if (i < 8 && movingPiece.type === 'p') {
+      promotion = 'q';
+    }
+    if (i > 55 && movingPiece.type === 'p') {
+      promotion = 'q'
+    }
+    console.log(`promotion: ${promotion}`)
+    let moveInfo = { from, to }
+    if (promotion !== '') {
+      moveInfo = { ...moveInfo, promotion }
+    }
+    console.log(moveInfo)
+    const move = this.props.chess.move(moveInfo)
     if (move) {
       this.updateTakenPieces(takenPiece)
       const history = this.state.history.slice();
@@ -295,16 +310,18 @@ export default class Game extends React.Component {
   } 
 
   handleEngineMove(msgTokens) {
-    const engMv = msgTokens[0];
-    if (engMv.length !== 5) {
+    let engMv = msgTokens[0];
+    if (engMv.length !== 5 && engMv.length !== 6) {
       config.logger.error(`invalid length engine move: ${engMv}`)
+      return
     }
+    engMv = engMv.slice(0, engMv.length-1)
     const from = engMv.slice(0,2)
     const to = engMv.slice(2,4)
     const takenPiece = this.props.chess.get(to)
     config.logger.info(`engine move from: ${from}. engine move to: ${to}.`);
-
-    const move = this.props.chess.move({ from: engMv.slice(0,2), to: engMv.slice(2,4) })
+    // const move = this.props.chess.move({ from: engMv.slice(0,2), to: engMv.slice(2,4) })
+    const move = this.props.chess.move(engMv, {sloppy: true})
     if (move) {
       this.updateTakenPieces(takenPiece)
       const history = this.state.history.slice();
