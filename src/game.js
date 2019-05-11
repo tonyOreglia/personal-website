@@ -131,20 +131,13 @@ export default class Game extends React.Component {
     const takenPiece = this.props.chess.get(to);
     const movingPiece = this.props.chess.get(from);
     let promotion = '';
-    console.log(`i: ${i}`)
-    console.log(`moving piece: ${JSON.stringify(movingPiece)}`)
-    if (i < 8 && movingPiece.type === 'p') {
+    if (movingPiece.type === 'p' && (i < 8 || i > 55)) {
       promotion = 'q';
     }
-    if (i > 55 && movingPiece.type === 'p') {
-      promotion = 'q'
-    }
-    console.log(`promotion: ${promotion}`)
     let moveInfo = { from, to }
     if (promotion !== '') {
       moveInfo = { ...moveInfo, promotion }
     }
-    console.log(moveInfo)
     const move = this.props.chess.move(moveInfo)
     if (move) {
       this.updateTakenPieces(takenPiece)
