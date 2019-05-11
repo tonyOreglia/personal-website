@@ -39,6 +39,37 @@ export default class Game extends React.Component {
     });
   }
 
+  startNewGameFen = (fen) => {
+    if (!this.props.chess.load(fen)) {
+      alert("invalid fen position")
+      return;
+    }
+    let playersTurn = false;
+    let engineThinking = true;
+    let playerColor = config.WHITE;
+    if (this.props.chess.turn() === config.WHITE) {
+      playerColor = config.BLACK;
+    }
+    this.setState({
+      history: [{
+        position: fen,
+        move: "",
+        takenPieces: []
+      }],
+      ply: 0,
+      selectedSq: null,
+      isReady: false,
+      engineThinking,
+      playersTurn,
+      playerColor,
+      takenPieces: [],
+    })
+    this.ws.send("ucinewgame")
+    this.ws.send("isready")
+    this.ws.send(`position ${this.props.chess.fen()}`)
+    this.ws.send("go")
+  }
+
   startNewGameAsBlack = () => {
     this.startNewGame(config.BLACK)
   }
@@ -179,9 +210,9 @@ export default class Game extends React.Component {
 
   fenInput = () => {
     const keyPress = (e) => {
-      if(e.keyCode == 13){
-         alert("enter pressed")
-         // put the login here
+      if(e.keyCode === 13){
+         this.setState({ fenInputOpen: false })
+         this.startNewGameFen(e.target.value)
       }
     }
    
@@ -210,7 +241,12 @@ export default class Game extends React.Component {
           <div className="game-info">
               <button class="button button-newgame" onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
               <button class="button button-newgame" onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
-              {this.state.fenInputOpen ? this.fenInput() :  <button class="button button-newgame" onClick={() => this.setState({ fenInputOpen: true })}>{"Set a position to play from"}</button>}
+              {this.state.fenInputOpen ? this.fenInput() :
+                <button
+                  class="button button-newgame"
+                  onClick={() => this.setState({ fenInputOpen: true })}>{"Set position using FEN notation"}
+                </button>
+              }
               {this.gameHistory()}
           </div>
         <div className="second-title">
