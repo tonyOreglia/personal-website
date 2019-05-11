@@ -7,7 +7,7 @@ export default function Square(props) {
   const darkSq = (props.index%2 + (row%2))%2 !== 0;
   let background = null;
   if (props.selected) {
-    background = 'rgb(255, 246, 124)';
+    background = 'rgb(79, 148, 84)';
   }
   let button =
   <button className="square light" onClick={props.onClick} style={{ background: background }}>

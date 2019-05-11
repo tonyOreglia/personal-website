@@ -24,6 +24,7 @@ export default class Game extends React.Component {
       playersTurn: true,
       playerColor: config.WHITE,
       takenPieces: [],
+      fenInputOpen: false,
     };
     this.ws = websocketConnect(config.gleeUri);
     this.ws.onmessage = (event) => {
@@ -36,6 +37,37 @@ export default class Game extends React.Component {
     this.setState({
       ply: step
     });
+  }
+
+  startNewGameFen = (fen) => {
+    if (!this.props.chess.load(fen)) {
+      alert("invalid fen position")
+      return;
+    }
+    let playersTurn = false;
+    let engineThinking = true;
+    let playerColor = config.WHITE;
+    if (this.props.chess.turn() === config.WHITE) {
+      playerColor = config.BLACK;
+    }
+    this.setState({
+      history: [{
+        position: fen,
+        move: "",
+        takenPieces: []
+      }],
+      ply: 0,
+      selectedSq: null,
+      isReady: false,
+      engineThinking,
+      playersTurn,
+      playerColor,
+      takenPieces: [],
+    })
+    this.ws.send("ucinewgame")
+    this.ws.send("isready")
+    this.ws.send(`position ${this.props.chess.fen()}`)
+    this.ws.send("go")
   }
 
   startNewGameAsBlack = () => {
@@ -152,33 +184,50 @@ export default class Game extends React.Component {
       this.ws.send("go")
     }
   } 
+  
+  gameHistory = () => {
+    let moves = [];
+    this.state.history.forEach((position, i, history) => {
+      if (i%2 === 0 || i === 0) { return }
+      if (i === history.length - 1) {
+        moves.push(
+          <div class="button_cont" key={i}>
+            <button class="button button-move" key={i*2} onClick={() => this.returnToPreviousMove(i)}>{`${position.move.from}, ${position.move.to}`}</button>
+          </div>
+        )
+        return;
+      }
+      moves.push(
+      <div class="button_cont" key={i}>
+        <button class="button button-move" key={i*2} onClick={() => this.returnToPreviousMove(i)}>{`${position.move.from}, ${position.move.to}`}</button>
+        <button class="button button-move" key={i*2 + 1} onClick={() => this.returnToPreviousMove(i+1)}>{`${history[i+1].move.from}, ${history[i+1].move.to}`}</button>
+      </div>
+      )
+    });
+    return moves;
+  }
+
+
+  fenInput = () => {
+    const keyPress = (e) => {
+      if(e.keyCode === 13){
+         this.setState({ fenInputOpen: false })
+         this.startNewGameFen(e.target.value)
+      }
+    }
+   
+    return (
+      <input
+        placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        class="input"
+        onKeyDown={keyPress}
+      />
+    )
+  }
 
   render() {
     const history = this.state.history;
     const current = history[this.state.ply];
-
-    const gameHistory = () => {
-      let moves = [];
-      this.state.history.forEach((position, i, history) => {
-        if (i%2 === 0 || i === 0) { return }
-        if (i === history.length - 1) {
-          moves.push(
-            <div class="button_cont" key={i}>
-              <button class="button button-move" key={i*2} onClick={() => this.returnToPreviousMove(i)}>{`${position.move.from}, ${position.move.to}`}</button>
-            </div>
-          )
-          return;
-        }
-        moves.push(
-        <div class="button_cont" key={i}>
-          <button class="button button-move" key={i*2} onClick={() => this.returnToPreviousMove(i)}>{`${position.move.from}, ${position.move.to}`}</button>
-          <button class="button button-move" key={i*2 + 1} onClick={() => this.returnToPreviousMove(i+1)}>{`${history[i+1].move.from}, ${history[i+1].move.to}`}</button>
-        </div>
-        )
-      });
-      return moves;
-    }
-
     return (
       <div>
         <header className="main-title" >{this.state.engineName ? this.state.engineName : "Attempting to connect with chess engine..."}</header>
@@ -192,7 +241,13 @@ export default class Game extends React.Component {
           <div className="game-info">
               <button class="button button-newgame" onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
               <button class="button button-newgame" onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
-              {gameHistory()}
+              {this.state.fenInputOpen ? this.fenInput() :
+                <button
+                  class="button button-newgame"
+                  onClick={() => this.setState({ fenInputOpen: true })}>{"Set position using FEN notation"}
+                </button>
+              }
+              {this.gameHistory()}
           </div>
         <div className="second-title">
           <TakenPieces

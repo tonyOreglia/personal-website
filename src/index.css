@@ -22,7 +22,7 @@ ol, ul {
 }
 
 .square {
-  border: 1px solid #999;
+  border: 1px solid rgb(17, 17, 17);
   float: left;
   line-height: 34px;
   margin-right: -1px;
@@ -39,20 +39,6 @@ ol, ul {
 
 .square.dark {
   background: rgb(44, 91, 153);
-}
-
-
-.square-dark:focus {
-  outline: none;
-}
-
-.square-light:focus {
-  outline: none;
-}
-
-
-.kbd-navigation .square:focus {
-  background: #ddd;
 }
 
 .game {
@@ -110,3 +96,11 @@ ol, ul {
   padding: 10px;
 }
   
+button:focus {
+  outline:0;
+}
+
+.input {
+  width: 30rem;
+}
+
