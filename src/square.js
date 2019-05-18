@@ -1,8 +1,8 @@
 import React from 'react';
-import { lookupPieceToRender } from './chess/chess'
+import Piece from './pieces/pieces';
 
 export default function Square(props) {
-  const piece = lookupPieceToRender(props.value)
+  const piece = Piece(props.value)
   const row = ~~(props.index / 8)
   const darkSq = (props.index%2 + (row%2))%2 !== 0;
   let background = null;
