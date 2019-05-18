@@ -21,6 +21,11 @@ ol, ul {
   margin-bottom: 10px;
 }
 
+.piece {
+  width: 85%;
+  height: 85%;
+}
+
 .square {
   border: 1px solid rgb(17, 17, 17);
   float: left;
