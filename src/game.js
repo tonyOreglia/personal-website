@@ -131,7 +131,7 @@ export default class Game extends React.Component {
     const takenPiece = this.props.chess.get(to);
     const movingPiece = this.props.chess.get(from);
     let promotion = '';
-    if (movingPiece.type === 'p' && (i < 8 || i > 55)) {
+    if (movingPiece && movingPiece.type === 'p' && (i < 8 || i > 55)) {
       promotion = 'q';
     }
     let moveInfo = { from, to }
