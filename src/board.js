@@ -13,11 +13,6 @@ export default class Board extends React.Component {
         onClick={() => this.props.onClick(i)}
         index={i}
         selected={selected}
-        // onDragOver={(e) => {console.log("dragging over!");}}
-        // onDrop={(e) => {
-        //   console.log("dropping!!!");
-        //   this.props.onClick(i);
-        // }}
       />
     );
   }
