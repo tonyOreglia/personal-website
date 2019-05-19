@@ -15,10 +15,10 @@ export default function Square(props) {
       className="square dark"
       onClick={props.onClick}
       style={{ background: background }}
-      onDragOver={(e) => {console.log("dragging over!")}}
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
       onDrop={(e) => {
-        // e.preventDefault();
-        console.log("drop!");
         props.onClick();
       }}
     >
@@ -29,9 +29,10 @@ export default function Square(props) {
     className="square light"
     onClick={props.onClick}
     style={{ background: background }}
-    onDragOver={(e) => {console.log("dragging over!")}}
+    onDragOver={(e) => {
+      e.preventDefault();
+    }}
     onDrop={(e) => {
-      console.log("drop!");
       props.onClick();
     }}
   >
