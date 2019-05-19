@@ -1,7 +1,7 @@
 import React from 'react';
 import whiteKing from './resources/w-king.svg'; // Tell Webpack this JS file uses this image
 import whiteQueen from './resources/w-queen.svg'
-import whiteRook from './resources/w-queen.svg'
+import whiteRook from './resources/w-rook.svg'
 import whiteKnight from './resources/w-knight.svg'
 import whiteBishop from './resources/w-bishop.svg'
 import whitePawn from './resources/w-pawn.svg'
