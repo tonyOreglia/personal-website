@@ -2,22 +2,39 @@ import React from 'react';
 import Piece from './pieces/pieces';
 
 export default function Square(props) {
-  const piece = Piece(props.value)
+  const pieceProps = { ...props.value, index: props.index, selectSquare: props.onClick };
+  const piece = Piece(pieceProps)
   const row = ~~(props.index / 8)
   const darkSq = (props.index%2 + (row%2))%2 !== 0;
   let background = null;
   if (props.selected) {
     background = 'rgb(79, 148, 84)';
   }
-  let button =
-  <button className="square light" onClick={props.onClick} style={{ background: background }}>
-    {piece}
-  </button>
   if (darkSq) {
-    button =
-    <button className="square dark" onClick={props.onClick} style={{ background: background }}>
+    return (<button
+      className="square dark"
+      onClick={props.onClick}
+      style={{ background: background }}
+      onDragOver={(e) => {console.log("dragging over!")}}
+      onDrop={(e) => {
+        // e.preventDefault();
+        console.log("drop!");
+        props.onClick();
+      }}
+    >
       {piece}
-    </button>
+    </button>)
   }
-  return (button);
+  return (<button
+    className="square light"
+    onClick={props.onClick}
+    style={{ background: background }}
+    onDragOver={(e) => {console.log("dragging over!")}}
+    onDrop={(e) => {
+      console.log("drop!");
+      props.onClick();
+    }}
+  >
+    {piece}
+  </button>)
 }

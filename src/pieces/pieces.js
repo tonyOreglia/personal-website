@@ -32,9 +32,19 @@ const typesMap = {
 }
 
 export default function Piece(props) {
-  if (!props) {
+  if (!props.type) {
     return null;
   }
-  return <img class="piece" src={typesMap[props.color][props.type]} alt="king" />;
+  return <img
+    class="piece"
+    draggable={true}
+    onDragStart={(e) => {
+      console.log("drag starting index: ", props.index);
+      e.dataTransfer.setData("index", props.index);
+      props.selectSquare();
+    }}
+    src={typesMap[props.color][props.type]}
+    alt="king"
+  />;
 }
 
