@@ -50,6 +50,10 @@ ol, ul {
   display: flex; 
 }
 
+.game-mobile {
+  padding-top: 2rem;
+}
+
 .main-title {
   text-align: center;
   font-size: 32px;

@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 import { websocketConnect } from './websocket'
 import { indexToAlgebraic } from './chess/chess'
 import config from "./config";
@@ -233,13 +234,11 @@ export default class Game extends React.Component {
     )
   }
 
-  render() {
-    const history = this.state.history;
-    const current = history[this.state.ply];
+  renderDesktop = (current) => { 
     return (
       <div>
-        <header className="main-title" >{this.state.engineName ? this.state.engineName : "Attempting to connect with chess engine..."}</header>
-        <header className="second-title" >{this.state.engineAuthor}</header>
+        <header className="main-title" >{this.state.engineName ? `Running ${this.state.engineName}` : "Attempting to connect with chess engine..."}</header>
+        <header className="second-title" >{`Created by ${this.state.engineAuthor}`}</header>
         <div className="game">
           <Board
             position={current.position}
@@ -257,14 +256,54 @@ export default class Game extends React.Component {
               }
               {this.gameHistory()}
           </div>
-        <div className="second-title">
+        <div className="second-title">  
           <TakenPieces
             takenPieces = {this.state.takenPieces} />
         </div>  
         </div>
       </div>
-    );
+    ); 
   }
+
+  renderMobile = (current) => { 
+    return (
+    <div>
+      <header className="main-title" >{this.state.engineName ? `Running Golang Chess Engine` : "Attempting to connect with chess computer..."}</header>
+      <header className="second-title" >{`Created by ${this.state.engineAuthor}`}</header>
+      <div className="game">
+        <Board
+          position={current.position}
+          onClick={(i) => this.handleClick(i)}
+          selected={this.state.selectedSq}
+        />
+      </div>
+        <div className="game-mobile">
+          <button class="button button-newgame" onClick={this.startNewGameAsWhite}>{"Play as White"}</button>
+          <button class="button button-newgame" onClick={this.startNewGameAsBlack}>{"Play as Black"}</button>
+          {this.state.fenInputOpen ? this.fenInput() :
+          <button
+            class="button button-newgame"
+            onClick={() => this.setState({ fenInputOpen: true })}>{"Set position using FEN notation"}
+          </button>
+          }
+          {this.gameHistory()}
+        </div>
+    </div>);
+  }
+
+
+
+  render() {
+    return <MediaQuery maxDeviceWidth={900}>
+      {(matches) => {
+        if (matches) {
+          return this.renderMobile(this.state.history[this.state.ply]);
+        }
+        return this.renderDesktop(this.state.history[this.state.ply]);
+      }}
+    </MediaQuery>
+  }
+
   processEngineMessage(msg) {
     const msgTokens = msg.split(" ")
     switch(msgTokens[0]) {
@@ -313,7 +352,6 @@ export default class Game extends React.Component {
     const to = engMv.slice(2,4)
     const takenPiece = this.props.chess.get(to)
     config.logger.info(`engine move from: ${from}. engine move to: ${to}.`);
-    // const move = this.props.chess.move({ from: engMv.slice(0,2), to: engMv.slice(2,4) })
     const move = this.props.chess.move(engMv, {sloppy: true})
     if (move) {
       this.updateTakenPieces(takenPiece)
@@ -343,7 +381,7 @@ export default class Game extends React.Component {
           break
         }
         this.setState({
-          engineName: `Running Engine - ${msgTokens.slice(1).join(" ")}`
+          engineName: `${msgTokens.slice(1).join(" ")}`
         });
         break;
       case "author":
@@ -353,7 +391,7 @@ export default class Game extends React.Component {
           break
         }
         this.setState({
-          engineAuthor: `Created by ${msgTokens.slice(1).join(" ")}`
+          engineAuthor: `${msgTokens.slice(1).join(" ")}`
         })
         break;
       default:
