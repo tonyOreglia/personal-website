@@ -38,6 +38,11 @@ ol, ul {
   width: 4rem;
 }
 
+.square.mobile {
+  height: 3rem;
+  width: 3rem;
+}
+
 .square.light {
   background: rgb(223, 196, 171);
 }
@@ -48,6 +53,10 @@ ol, ul {
 
 .game {
   display: flex; 
+}
+
+.game-mobile {
+  padding-top: 2rem;
 }
 
 .main-title {
