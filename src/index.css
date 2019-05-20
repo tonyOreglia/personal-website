@@ -38,11 +38,6 @@ ol, ul {
   width: 4rem;
 }
 
-.square.mobile {
-  height: 3rem;
-  width: 3rem;
-}
-
 .square.light {
   background: rgb(223, 196, 171);
 }
