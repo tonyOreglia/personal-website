@@ -2,7 +2,7 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 import { websocketConnect } from './websocket'
 import { indexToAlgebraic } from './chess/chess'
-import config from "./config";
+import config from "../config";
 import Board from "./board";
 import TakenPieces from "./taken-pieces";
 

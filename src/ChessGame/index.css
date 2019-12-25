@@ -83,8 +83,8 @@ ol, ul {
   color: #494949 !important;
   text-transform: uppercase;
   background: #ffffff;
-  padding: 4px;
-  border: 2px solid #494949 !important;
+  padding: 2px;
+  border: 1px solid #494949 !important;
   border-radius: 3px;
   display: inline-block;
   margin-right: 2px;
@@ -98,7 +98,7 @@ ol, ul {
 }
 
 .button-move {
-  width: 70px;
+  width: 80px;
 }
 
 .button-newgame {
