@@ -1,21 +1,30 @@
 export const markdown = `
 #### Intro
-
-I'm a bloke from San Jose that likes beer, rugy, chess, reading and programming. I do not balance my interests well. 
-Sometimes I only watch youtube videos of Slavoj Žižek and then regret doing nothing productive. 
-<br><br>
-I have two older sisters that are pretty cool and a younger brother that is a legend.
-<br><br>
-My parents drink too much wine and find meaning in their grandkids.
-
-<br><br>
-#### Currently
-Living in Lisbon, Portugal working for a great company called Dashlane. Sign up and protect your identity from Facebook, Trump and other evil entities described on the news cycle.
-<br><br>
+Hello :) I'm from San Jose, California. 
 
 #### I like
-- Chess
+- Programming/tech 
 - Rugby
-- Philosophy, Politics, Economics and arguing about these things
-- Books
-- Drinking beer`
+- Reading/learning
+- Beer/being with friends
+- Surfing
+- Chess
+- Wrestling
+
+I do not often balance my interests very well. 
+Sometimes I only watch youtube videos of Slavoj Žižek and then regret doing nothing productive. But that guys is really fun to watch.
+
+In 2015 I moved to Sydney, Australia where I lived until moving to Lisbon, Portugal in 2019. 
+
+<br><br>
+I have two older sisters that are pretty cool and a younger brother that is an absolute legend.
+<br><br>
+My parents drink too much wine now that we are moved out and really love their three grandkids.
+<br><br>
+My girlfriend is the light of my life. I have never even for a moment been angry or annoyed at her. 
+She is in marketing, you can contact here from her website [HERE](https://www.thalitamilan.com/). 
+<br><br>
+#### Currently
+Living in Lisbon, Portugal working for a great company called Dashlane. Sign up and protect yourself from hackers, Facebook, Trump and other evil entities described on the news.
+<br><br>
+`
