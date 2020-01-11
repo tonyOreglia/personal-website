@@ -17,11 +17,6 @@ const Index = () => (
         </div>
       </header>
       <p> 
-        {/* Welcome to my website. Please feel free to read more <Link to="/about">about me</Link>,
-        or you can check out my {' '}
-        <Link to="/projects">projects</Link>, {' '}
-        view <Link to="/stats">site statistics</Link>, {' '}
-        or <Link to="/contact">contact</Link> me. */}
         <Game chess={Chess()}/>
       </p>
       <p> Chess Engine Source available <a href="https://github.com/tonyOreglia/glee">here</a>.</p>

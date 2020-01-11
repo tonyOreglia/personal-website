@@ -1,10 +1,5 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
-}
-
-ol, ul {
-  padding-left: 30px;
 }
 
 .board-row {
@@ -33,7 +28,6 @@ ol, ul {
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
-  font-size: 34px;
   height: 4rem;
   width: 4rem;
 }
@@ -56,16 +50,16 @@ ol, ul {
 
 .main-title {
   text-align: center;
-  font-size: 32px;
+  font-size: 26px;
   margin-bottom: 16px;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .second-title {
   text-align: center;
-  font-size: 22px;
+  font-size: 14px;
   margin-bottom: 20px;
-  font-weight: 200;
+  font-weight: 150;
 }
 
 .game-info {
@@ -73,36 +67,27 @@ ol, ul {
 }
 
 .button_cont {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 1px;
+  margin-bottom: 2px;
   margin-right: 2px;
   margin-left: 2px;
 }
 
 .button {
   color: #494949 !important;
-  text-transform: uppercase;
   background: #ffffff;
-  padding: 2px;
   border: 1px solid #494949 !important;
   border-radius: 3px;
-  display: inline-block;
-  margin-right: 2px;
 }
   
 .button:hover {
   color: #494949 !important;
   border-radius: 50px;
-  border-color: #20bf6b !important;
   transition: all 0.4s ease 0s;
 }
 
-.button-move {
-  width: 80px;
-}
-
 .button-newgame {
-  padding: 10px;
+  padding: 5px;
 }
   
 button:focus {
