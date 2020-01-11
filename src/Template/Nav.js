@@ -19,10 +19,10 @@ const Nav = () => (
 
     <section className="blurb">
       <h2>About</h2>
-      <p>Hi, I&apos;m Tony. I like building things, leaning, and talking to people.
+      <p>Hi, I&apos;m Tony.
             I have my bachelors in Electrical Engineering from <a href="https://www.ece.ucdavis.edu/">UC Davis</a> and am currently a
             Backend Engineer at <a href="https://www.dashlane.com/">Dashlane</a>. Before Dashlane I worked
-            at <a href="https://safetyculture.com/">SafetyCulture</a> and <a href="https://www.seagate.com/pt/pt/">Seagate</a>
+            at <a href="https://safetyculture.com/">SafetyCulture</a> and before that <a href="https://www.seagate.com/pt/pt/">Seagate</a>
       </p>
       <ul className="actions">
       </ul>
