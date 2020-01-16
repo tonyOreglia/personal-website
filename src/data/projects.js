@@ -9,6 +9,14 @@ const data = [
       desc: 'Built to learn Golang. '
         + 'Using microservice architecutre with separate deployment pipelines for frontend and backend. '
         + 'Persistent full-duplex communication over websocket.'
+    },
+    {
+      title: 'Assembly Language Programming & Debugging on Mac OS',
+      subtitle: 'Assembly Language Programming & Debugging on Mac OS',
+      link: '/assembly',
+      image: '/images/projects/nasm.png',
+      date: '2019-01-06',
+      desc: ''
     }
   ];
   
