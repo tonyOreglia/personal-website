@@ -8,6 +8,16 @@ import Contact from './views/Contact';
 import Projects from './views/Projects';
 import Glee from './views/Glee';
 import NotFound from './views/NotFound';
+import AssemblyGuide from './views/AssemblyGuide/AssemblyGuide';
+import GuideResources from './views/AssemblyGuide/Resources';
+import GuideGettingStarted from './views/AssemblyGuide/GettingStarted';
+import GuideConditions from './views/AssemblyGuide/Conditions';
+import GuideDebugWithDocker from './views/AssemblyGuide/DebugWithDocker';
+import GuideFunctionParams from './views/AssemblyGuide/Functionparams';
+import GuideGdb from './views/AssemblyGuide/Gdb';
+import GuidePrinting from './views/AssemblyGuide/Printing';
+import GuideQuickReference from './views/AssemblyGuide/QuickReference';
+import GuideStringLength from './views/AssemblyGuide/StringLength';
 import Main from './layouts/Main';
 import './static/css/main.scss';
 
@@ -37,6 +47,18 @@ ReactDOM.render(
       <Route path="/about" component={About} />
       <Route path="/projects" component={Projects} />
       <Route path="/chess" component={Glee} />
+      
+      <Route path="/assembly" component={AssemblyGuide}/>
+      <Route path="/guidegettingstarted" component={GuideGettingStarted}/>
+      <Route path="/guideresources" component={GuideResources} />
+      <Route path="/guidegdb" component={GuideGdb} />
+      <Route path="/guidefunctionparams" component={GuideFunctionParams} />
+      <Route path="/guideconditions" component={GuideConditions} />
+      <Route path="/guidestringlength" component={GuideStringLength} />
+      <Route path="/guidequickreference" component={GuideQuickReference} />
+      <Route path="/guidedebugwithdocker" component={GuideDebugWithDocker} />
+      <Route path="/guideprinting" component={GuidePrinting} />
+      
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} status={404} />
     </Switch>
