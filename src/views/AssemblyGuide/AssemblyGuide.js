@@ -12,7 +12,7 @@ const About = () => (
     <article className="post" id="index">
       <header>
         <div className="title">
-          <h2><Link to="/assembly">GUIDE TO WRITING X86-64 ASSEMBLY LANGUAGE</Link></h2>
+          <h2><Link to="/assembly">TONY'S GUIDE TO WRITING X86-64 ASSEMBLY LANGUAGE</Link></h2>
           <p>Contents</p>
         </div>
       </header>
