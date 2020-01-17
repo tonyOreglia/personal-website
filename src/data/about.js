@@ -7,12 +7,12 @@ In 2015 I moved to Australia where I lived until 2019 when I moved with my partn
 #### Family
 I have two older sisters that are pretty cool and a younger brother that is an absolute legend.
 <br><br>
-My Mom has an awesome blog called Living in the Gap](https://cheryloreglia.blog/). It is largely unfiltered.
+My Mom has an awesome blog called [Living in the Gap](https://cheryloreglia.blog/). It is largely unfiltered.
 <br><br>
 My Dad played football for the [Santa Clara Broncos](https://www.youtube.com/watch?v=aWlCcuQk6y8&t=10012s) back when men didn't wear Uggs. 
 He now wears Uggs. 
 <br><br>
-My girlfriend [Thali](https://www.thalitamilan.com/) freelances in content marketing.
+My girlfriend is great and she [freelances in content marketing](https://www.thalitamilan.com/).
 <br><br>
 #### Currently
 Living in Lisbon, Portugal working for [Dashlane](https://www.dashlane.com/).
