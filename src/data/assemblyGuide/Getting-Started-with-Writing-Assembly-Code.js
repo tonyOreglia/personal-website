@@ -1,5 +1,5 @@
 export const gettingStarted = `
-## Getting Started with Writing Assembly Code
+# Getting Started with Writing Assembly Code
 Getting prepared to write assembly language can be a bit confusing. There are a number of tools that can compile 
 and link assembly. It may not be obvious right away which tool works on your particular operating system, supports compiling to a machine binary that is compatible with your processor, and is compatible with a debugger. 
 
@@ -28,5 +28,5 @@ I am going to use this example image for guidance [here](https://github.com/kell
 
 My goal is to use a live docker container to step through the assembly code. Update on how I go with that soon ... 
 
-## [Next Page >>](/guidestringlength)
+## [Next Page >>](/guidegdb)
 `

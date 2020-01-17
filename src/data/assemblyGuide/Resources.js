@@ -1,4 +1,6 @@
-export const resources = `# Tutorials
+export const resources = `
+# Resources
+## Tutorials
 ##### NASM
 * [NASM Tutorial](http://cs.lmu.edu/~ray/notes/nasmtutorial/)
 * [NASM tutorial](http://cs.lmu.edu/~ray/notes/nasmtutorial/)

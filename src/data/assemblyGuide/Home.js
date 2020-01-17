@@ -1,14 +1,15 @@
 export const home = `
-[Resources](/guideresources)
-
-[Quick Reference](/guidequickreference)
-#### Getting Started
+### Getting Started
 1. [Getting Started with Writing Assembly on Mac](/guidegettingstarted)
 2. [Enabling GDB to work within Docker](/guidegdb)
 3. [Using Docker to Compile, Link, Run and Debug Assembly Language Code](/guidedebugwithdocker)
-#### x86-64 Assembly Language Programming
-4. [Part 1: Printing Command Line Arguments](/guideprinting)
-6. [Part 2: Sending Function Arguments and Receiving a Return Value](/guidefunctionparams)
-7. [Part 3: Conditionals, Jumping & How to Loop](/guideconditions)
-8. [Part 4: How to Calculate String Length](/guidestringlength)
-`
+### Writing an x86-64 Assembly Language Programm
+- [Part 1: Printing Command Line Arguments](/guideprinting)
+- [Part 2: Sending Function Arguments and Receiving a Return Value](/guidefunctionparams)
+- [Part 3: Conditionals, Jumping & How to Loop](/guideconditions)
+- [Part 4: How to Calculate String Length](/guidestringlength)
+### General Information 
+ - [Quick Reference](/guidequickreference)
+ - [Resources](/guideresources)
+ - [Code from this guide](https://github.com/tonyOreglia/argument-counter)
+ `

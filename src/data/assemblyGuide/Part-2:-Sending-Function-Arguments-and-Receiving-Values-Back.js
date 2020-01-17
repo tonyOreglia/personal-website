@@ -1,5 +1,6 @@
 export const functionParams = `
-## Sending Function Arguments and Recieving Values Back
+# Writing an x86-64 Assembly Language Programm
+### Part 2: Sending Function Arguments and Recieving Values Back
 In the [previous post](https://github.com/tonyOreglia/unique-word-counter/wiki/x86-64-Linux-Assembly-Part-1:-Printing-Command-Line-Arguments) we saw how to define and call functions in x86-64 Linux Assembly. 
 
 Now I wanted to know how to provide arguments to a function and return values. In other words, when this is done in a higher level language, how is it translated at the Assembly code level? 

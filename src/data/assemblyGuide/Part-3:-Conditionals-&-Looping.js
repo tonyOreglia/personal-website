@@ -1,5 +1,6 @@
 export const conditionsAndLooping = `
-## Conditionals and Looping
+# Writing an x86-64 Assembly Language Programm
+### Part 3: Conditionals and Looping
 Looping is a specific application of jumping on a conditional. Essentially this post is about writing conditional statements to branch one of two ways depending on some condition. 
 
 The core conditional operator is \`cmp\` for compare. The \`cmp\` operator compares two values and then sets a number of flags indicating the relation of those two values. Flags can be checked using a number of operators, namely: 

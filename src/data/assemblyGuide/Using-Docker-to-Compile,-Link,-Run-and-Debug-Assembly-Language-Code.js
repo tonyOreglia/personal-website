@@ -1,5 +1,5 @@
 export const debugWithDocker = `
-## Using Docker to Compile, Link, Run and Debug Assembly Language Code
+# Using Docker to Compile, Link, Run and Debug Assembly Language Code
 ### tldr; 
 See the [Makefile](https://github.com/tonyOreglia/unique-word-counter/blob/master/Makefile) for commands that compile, link, run and debug assembly code on a Docker container. Copied below for convenience: 
 

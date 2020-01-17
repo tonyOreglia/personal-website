@@ -1,5 +1,6 @@
 export const stringLength = `
-## How to Calculate String Length
+# Writing an x86-64 Assembly Language Programm
+### Part 4: How to Calculate String Length
 In order to calculate the length of a string, we'll first need to know what determines the end of a given string. 
 
 Strings in memory are represented as a pointer. The location pointed too is a byte of data representing a character followed by additional characters contiguous in memory. The important point is that this sequence of bytes is terminated by the byte \`0x00\`. This is called the zero-termination character. This is what determines the end of a string. 
