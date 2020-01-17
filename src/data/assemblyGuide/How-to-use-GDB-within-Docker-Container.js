@@ -1,5 +1,5 @@
 export const howToUseGdb = `
-## How to use GDB within a Docker Container
+# How to use GDB within a Docker Container
 ###tldr; 
 This [Dockerfile](https://github.com/tonyOreglia/unique-word-counter/blob/master/Dockerfile) supports compiling x86-64 assembly code using \`nasm\`, linking with \`gcc\` (or \`ld\`) and debugging with \`gdb\`
 

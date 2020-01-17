@@ -1,5 +1,6 @@
 export const printing = `
-## Printing Command Line Arguments
+# Writing an x86-64 Assembly Language Programm
+### Part 1: Printing Command Line Arguments
 My objective is to write an assembly program that counts the number of unique words in a text file whose name is provided as an argument. 
 
 As a first step towards that goal, the program would need to access command line arguments. This first program is all about understanding how to access command line arguments using x86_64 Linux assembly. 
