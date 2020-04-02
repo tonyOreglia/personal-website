@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import Contact from './views/Contact';
+import MyWiki from './views/MyWiki';
 import Projects from './views/Projects';
 import Glee from './views/Glee';
 import NotFound from './views/NotFound';
@@ -40,9 +41,12 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={Index} />
       <Route path="/projects" component={Projects} />
-      <Route path="/chess" component={Glee} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/wiki" component={MyWiki} />
       
+      <Route path="/chess" component={Glee} />
       <Route path="/assembly" component={AssemblyGuide}/>
+
       <Route path="/guidegettingstarted" component={GuideGettingStarted}/>
       <Route path="/guideresources" component={GuideResources} />
       <Route path="/guidegdb" component={GuideGdb} />
@@ -53,7 +57,6 @@ ReactDOM.render(
       <Route path="/guidedebugwithdocker" component={GuideDebugWithDocker} />
       <Route path="/guideprinting" component={GuidePrinting} />
       
-      <Route path="/contact" component={Contact} />
       <Route component={NotFound} status={404} />
     </Switch>
   </Router>,
