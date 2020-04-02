@@ -12,6 +12,10 @@ const data = [
       path: '/contact',
       label: 'Contact',
     },
+    {
+      path: '/wiki',
+      label: 'my wiki',
+    },
   ];
   
   export default data;

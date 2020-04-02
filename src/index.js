@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import Contact from './views/Contact';
+import MyWiki from './views/MyWiki';
 import Projects from './views/Projects';
 import Glee from './views/Glee';
 import NotFound from './views/NotFound';
@@ -29,7 +30,7 @@ const Index = () => (
           <p>A single-page app written with ReactJS </p>
         </div>
       </header>
-      <p>This website is hosted on <Link to="https://www.digitalocean.com/">DigitalOcean</Link>. Updates are automatically tested and deployed with <Link to="https://codeship.com/">CodeShip</Link>.</p>
+      <p>This website is hosted on <a href="https://www.digitalocean.com/">DigitalOcean</a>. Updates are automatically tested and deployed with <a href="https://codeship.com/">CodeShip</a>.</p>
       <p>Have a look at my <Link to="/projects">projects</Link> and feel free to <Link to="/contact">get in touch</Link>.</p>
     </article>
   </Main>
@@ -40,9 +41,12 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={Index} />
       <Route path="/projects" component={Projects} />
-      <Route path="/chess" component={Glee} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/wiki" component={MyWiki} />
       
+      <Route path="/chess" component={Glee} />
       <Route path="/assembly" component={AssemblyGuide}/>
+
       <Route path="/guidegettingstarted" component={GuideGettingStarted}/>
       <Route path="/guideresources" component={GuideResources} />
       <Route path="/guidegdb" component={GuideGdb} />
@@ -53,7 +57,6 @@ ReactDOM.render(
       <Route path="/guidedebugwithdocker" component={GuideDebugWithDocker} />
       <Route path="/guideprinting" component={GuidePrinting} />
       
-      <Route path="/contact" component={Contact} />
       <Route component={NotFound} status={404} />
     </Switch>
   </Router>,
