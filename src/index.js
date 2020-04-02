@@ -29,7 +29,7 @@ const Index = () => (
           <p>A single-page app written with ReactJS </p>
         </div>
       </header>
-      <p>This website is hosted on <Link to="https://www.digitalocean.com/">DigitalOcean</Link>. Updates are automatically tested and deployed with <Link to="https://codeship.com/">CodeShip</Link>.</p>
+      <p>This website is hosted on <a href="https://www.digitalocean.com/">DigitalOcean</a>. Updates are automatically tested and deployed with <a href="https://codeship.com/">CodeShip</a>.</p>
       <p>Have a look at my <Link to="/projects">projects</Link> and feel free to <Link to="/contact">get in touch</Link>.</p>
     </article>
   </Main>
