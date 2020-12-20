@@ -17,6 +17,14 @@ const data = [
       image: '/images/projects/nasm.png',
       date: '2019-01-06',
       desc: ''
+    },
+    {
+      title: 'Tetris',
+      subtitle: 'Built with p5 library in javascript',
+      link: '/tetris',
+      image: '/images/projects/tetris.jpeg',
+      date: '2020-12-20',
+      desc: ''
     }
   ];
   

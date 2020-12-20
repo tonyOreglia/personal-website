@@ -9,6 +9,7 @@ import Projects from './views/Projects';
 import Glee from './views/Glee';
 import NotFound from './views/NotFound';
 import AssemblyGuide from './views/AssemblyGuide/AssemblyGuide';
+import Tetris from './views/Tetris';
 import GuideResources from './views/AssemblyGuide/Resources';
 import GuideGettingStarted from './views/AssemblyGuide/GettingStarted';
 import GuideConditions from './views/AssemblyGuide/Conditions';
@@ -30,7 +31,7 @@ const Index = () => (
           <p>A single-page app written with ReactJS </p>
         </div>
       </header>
-      <p>This website is hosted on <a href="https://www.digitalocean.com/">DigitalOcean</a>. Updates are automatically tested and deployed with <a href="https://codeship.com/">CodeShip</a>.</p>
+      <p>This website is self hosted on a server running <a href="https://www.nginx.com/">Nginx</a>.</p>
       <p>Have a look at my <Link to="/projects">projects</Link> and feel free to <Link to="/contact">get in touch</Link>.</p>
     </article>
   </Main>
@@ -46,6 +47,7 @@ ReactDOM.render(
       
       <Route path="/chess" component={Glee} />
       <Route path="/assembly" component={AssemblyGuide}/>
+      <Route path="/tetris" component={Tetris}/>
 
       <Route path="/guidegettingstarted" component={GuideGettingStarted}/>
       <Route path="/guideresources" component={GuideResources} />
