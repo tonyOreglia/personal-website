@@ -10,6 +10,7 @@ import Glee from './views/Glee';
 import NotFound from './views/NotFound';
 import AssemblyGuide from './views/AssemblyGuide/AssemblyGuide';
 import Tetris from './views/Tetris';
+import Snake from './views/Snake';
 import GuideResources from './views/AssemblyGuide/Resources';
 import GuideGettingStarted from './views/AssemblyGuide/GettingStarted';
 import GuideConditions from './views/AssemblyGuide/Conditions';
@@ -48,6 +49,7 @@ ReactDOM.render(
       <Route path="/chess" component={Glee} />
       <Route path="/assembly" component={AssemblyGuide}/>
       <Route path="/tetris" component={Tetris}/>
+      <Route path="/snake" component={Snake}/>
 
       <Route path="/guidegettingstarted" component={GuideGettingStarted}/>
       <Route path="/guideresources" component={GuideResources} />
