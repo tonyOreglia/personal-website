@@ -1,23 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import PropTypes from 'prop-types';
 import Main from '../../layouts/Main';
-import { debugWithDocker } from '../../data/blog/assemblyGuide/Using-Docker-to-Compile,-Link,-Run-and-Debug-Assembly-Language-Code';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;
 
-const About = () => (
+const Post = ({data}) => (
   <Main>
     <article className="post" id="index">
       <header>
         <div className="title">
-          <h2><Link to="/assembly">TONY'S GUIDE TO WRITING X86-64 ASSEMBLY LANGUAGE</Link></h2>
-          <p>Contents</p>
+          <h2><Link to="/blog">Blog Posts</Link></h2>
         </div>
       </header>
       <ReactMarkdown
-        source={debugWithDocker}
+        source={data.post}
         renderers={{
           Link: LinkRenderer,
         }}
@@ -27,4 +26,11 @@ const About = () => (
   </Main>
 );
 
-export default About;
+Post.propTypes = {
+    data: PropTypes.shape({
+      post: PropTypes.string.isRequired
+    }).isRequired,
+  };
+  
+
+export default Post;

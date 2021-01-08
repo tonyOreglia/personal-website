@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { gettingStarted } from '../../data/assemblyGuide/Getting-Started-with-Writing-Assembly-Code';
+import { gettingStarted } from '../../data/blog/assemblyGuide/Getting-Started-with-Writing-Assembly-Code';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { howToUseGdb } from '../../data/assemblyGuide/How-to-use-GDB-within-Docker-Container';
+import { howToUseGdb } from '../../data/blog/assemblyGuide/How-to-use-GDB-within-Docker-Container';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

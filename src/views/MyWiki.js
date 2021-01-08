@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Main from '../layouts/Main';
 
-const Contact = () => {
+const MyWiki = () => {
   return (
     <Main>
       <Helmet title="Contact" />
@@ -13,4 +13,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default MyWiki;

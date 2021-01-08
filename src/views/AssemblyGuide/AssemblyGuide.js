@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { home } from '../../data/assemblyGuide/Home';
+import { home } from '../../data/blog/assemblyGuide/Home';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { stringLength } from '../../data/assemblyGuide/Part-4:-How-to-Calculate-String-Length';
+import { stringLength } from '../../data/blog/assemblyGuide/Part-4:-How-to-Calculate-String-Length';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { conditionsAndLooping } from '../../data/assemblyGuide/Part-3:-Conditionals-&-Looping';
+import { conditionsAndLooping } from '../../data/blog/assemblyGuide/Part-3:-Conditionals-&-Looping';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

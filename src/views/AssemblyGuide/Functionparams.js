@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { functionParams } from '../../data/assemblyGuide/Part-2:-Sending-Function-Arguments-and-Receiving-Values-Back';
+import { functionParams } from '../../data/blog/assemblyGuide/Part-2:-Sending-Function-Arguments-and-Receiving-Values-Back';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

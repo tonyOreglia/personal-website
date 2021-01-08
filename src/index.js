@@ -5,6 +5,7 @@ import {
 import React from 'react';
 import Contact from './views/Contact';
 import MyWiki from './views/MyWiki';
+import Blog from './views/BlogTOC';
 import Projects from './views/Projects';
 import Glee from './views/Glee';
 import NotFound from './views/NotFound';
@@ -12,6 +13,7 @@ import AssemblyGuide from './views/AssemblyGuide/AssemblyGuide';
 import Tetris from './views/Tetris';
 import Snake from './views/Snake';
 import GuideResources from './views/AssemblyGuide/Resources';
+
 import GuideGettingStarted from './views/AssemblyGuide/GettingStarted';
 import GuideConditions from './views/AssemblyGuide/Conditions';
 import GuideDebugWithDocker from './views/AssemblyGuide/DebugWithDocker';
@@ -20,6 +22,9 @@ import GuideGdb from './views/AssemblyGuide/Gdb';
 import GuidePrinting from './views/AssemblyGuide/Printing';
 import GuideQuickReference from './views/AssemblyGuide/QuickReference';
 import GuideStringLength from './views/AssemblyGuide/StringLength';
+
+import FirstPost from './views/Blog/firstPost';
+
 import Main from './layouts/Main';
 import './static/css/main.scss';
 
@@ -45,6 +50,7 @@ ReactDOM.render(
       <Route path="/projects" component={Projects} />
       <Route path="/contact" component={Contact} />
       <Route path="/wiki" component={MyWiki} />
+      <Route path="/blog" component={Blog} />
       
       <Route path="/chess" component={Glee} />
       <Route path="/assembly" component={AssemblyGuide}/>
@@ -60,7 +66,9 @@ ReactDOM.render(
       <Route path="/guidequickreference" component={GuideQuickReference} />
       <Route path="/guidedebugwithdocker" component={GuideDebugWithDocker} />
       <Route path="/guideprinting" component={GuidePrinting} />
-      
+
+      <Route path="/firstPost" component={FirstPost} />
+
       <Route component={NotFound} status={404} />
     </Switch>
   </Router>,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { quickReference } from '../../data/assemblyGuide/Quick-Reference:-x86-64-Assembly-&-GDB';
+import { quickReference } from '../../data/blog/assemblyGuide/Quick-Reference:-x86-64-Assembly-&-GDB';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;

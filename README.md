@@ -25,4 +25,8 @@ Note that, port 80 must be opened via the router configuration settings for cert
 
 # To Do
 - [X] ~~*remove scroll bar to enable snake game to work without disruption OR link out of the app for snake OR make snake game work with mouse pointer*~~ [2021-01-06] made it mouse controlled
+- [ ] add a blog tab
+- [ ] do a dark mode tab
+- [ ] do an images tab to share my life
+- [ ] Add credit to https://html5up.net/future-imperfect
 - [ ] 

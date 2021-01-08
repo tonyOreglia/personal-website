@@ -16,6 +16,10 @@ const data = [
       path: '/wiki',
       label: 'my wiki',
     },
+    {
+      path: '/blog',
+      label: 'blog'
+    }
   ];
   
   export default data;

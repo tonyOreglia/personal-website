@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Main from '../../layouts/Main';
-import { printing } from '../../data/assemblyGuide/x86-64-Linux-Assembly-Part-1:-Printing-Command-Line-Arguments';
+import { printing } from '../../data/blog/assemblyGuide/x86-64-Linux-Assembly-Part-1:-Printing-Command-Line-Arguments';
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;
