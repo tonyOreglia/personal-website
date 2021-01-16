@@ -13,14 +13,14 @@ const Index = () => (
       <header>
         <div className="title">
           <h2><Link to="/">GLEE</Link></h2>
-          <p>Golang Chess Engine. Frontend build modularly with React.</p>
+          <p>Golang Chess Engine. Frontend built with React.</p>
         </div>
       </header>
       <p> 
         <Game chess={Chess()}/>
       </p>
       <p> Chess Engine Source available <a href="https://github.com/tonyOreglia/glee">here</a>.</p>
-      <p> React Board Source available <a href="https://github.com/tonyOreglia/chess-board-react">here</a>.</p>
+      <p> React Board Source available <a href="https://github.com/tonyOreglia/personal-website/tree/master/src/ChessGame">here</a>.</p>
     </article>
   </Main>
 );

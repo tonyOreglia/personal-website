@@ -14,7 +14,7 @@ const data = [
     },
     {
       path: '/wiki',
-      label: 'my wiki',
+      label: 'wiki',
     },
     {
       path: '/blog',
