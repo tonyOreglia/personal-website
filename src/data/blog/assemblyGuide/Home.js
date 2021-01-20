@@ -12,4 +12,4 @@ export const home = `
  - [Quick Reference](/guidequickreference)
  - [Resources](/guideresources)
  - [Code from this guide](https://github.com/tonyOreglia/argument-counter)
- `
+ `;

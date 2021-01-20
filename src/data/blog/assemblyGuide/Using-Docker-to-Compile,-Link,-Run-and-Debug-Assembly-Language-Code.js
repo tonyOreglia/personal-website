@@ -67,4 +67,4 @@ docker run --rm -it --cap-add=SYS_PTRACE -v "$(pwd)":/app -w /app linux-assembly
 
 Now I am able to develop locally using VSCode and quickly run the program on the Docker container or debug using GDB on Docker if needed.
 ## [Next Page >>](/guideprinting)
-`
+`;

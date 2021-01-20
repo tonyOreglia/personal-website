@@ -33,4 +33,4 @@ export const resources = `
 # Utilities
 #### Docker
 * [Docker container configured for writing NASM x86 Assembly & C](https://github.com/kellyi/nasm-gcc-container)
-`
+`;

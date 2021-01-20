@@ -1,7 +1,7 @@
-import React from 'react';
-import Square from "./square"
-import Chess from 'chess.js';
-import { indexToAlgebraic } from './chess/chess'
+import React from "react";
+import Square from "./square";
+import Chess from "chess.js";
+import { indexToAlgebraic } from "./chess/chess";
 
 export default class Board extends React.Component {
   renderSquare(i, value) {
@@ -26,19 +26,17 @@ export default class Board extends React.Component {
     for (let i = 0; i < 8; i++) {
       sqs = [];
       for (let j = 0; j < 8; j++) {
-        index = j + i*8;
-        sqs.push(this.renderSquare(index, position.get(indexToAlgebraic(index))));
+        index = j + i * 8;
+        sqs.push(
+          this.renderSquare(index, position.get(indexToAlgebraic(index)))
+        );
       }
       rows.push(
-      <div key={i} className="board-row">
-        {sqs}
-      </div>
-      )
+        <div key={i} className="board-row">
+          {sqs}
+        </div>
+      );
     }
-    return (
-      <div>
-        {rows}
-      </div>
-    );
+    return <div>{rows}</div>;
   }
 }

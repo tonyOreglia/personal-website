@@ -1,61 +1,67 @@
-import ReactDOM from 'react-dom';
-import {
-  Link, BrowserRouter as Router, Switch, Route,
-} from 'react-router-dom';
-import React from 'react';
-import Contact from './views/Contact';
-import MyWiki from './views/MyWiki';
-import Blog from './views/BlogTOC';
-import Projects from './views/Projects';
-import Glee from './views/Glee';
-import NotFound from './views/NotFound';
-import AssemblyGuide from './views/AssemblyGuide/AssemblyGuide';
-import Tetris from './views/Tetris';
-import Snake from './views/Snake';
-import GuideResources from './views/AssemblyGuide/Resources';
+import ReactDOM from "react-dom";
+import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import Contact from "./views/Contact";
+import MyWiki from "./views/MyWiki";
+import Blog from "./views/BlogTOC";
+import Projects from "./views/Projects";
+import Glee from "./views/Glee";
+import NotFound from "./views/NotFound";
+import AssemblyGuide from "./views/AssemblyGuide/AssemblyGuide";
+import Tetris from "./views/Tetris";
+import Snake from "./views/Snake";
+import GuideResources from "./views/AssemblyGuide/Resources";
 
-import GuideGettingStarted from './views/AssemblyGuide/GettingStarted';
-import GuideConditions from './views/AssemblyGuide/Conditions';
-import GuideDebugWithDocker from './views/AssemblyGuide/DebugWithDocker';
-import GuideFunctionParams from './views/AssemblyGuide/Functionparams';
-import GuideGdb from './views/AssemblyGuide/Gdb';
-import GuidePrinting from './views/AssemblyGuide/Printing';
-import GuideQuickReference from './views/AssemblyGuide/QuickReference';
-import GuideStringLength from './views/AssemblyGuide/StringLength';
+import GuideGettingStarted from "./views/AssemblyGuide/GettingStarted";
+import GuideConditions from "./views/AssemblyGuide/Conditions";
+import GuideDebugWithDocker from "./views/AssemblyGuide/DebugWithDocker";
+import GuideFunctionParams from "./views/AssemblyGuide/Functionparams";
+import GuideGdb from "./views/AssemblyGuide/Gdb";
+import GuidePrinting from "./views/AssemblyGuide/Printing";
+import GuideQuickReference from "./views/AssemblyGuide/QuickReference";
+import GuideStringLength from "./views/AssemblyGuide/StringLength";
 
-import Main from './layouts/Main';
-import './static/css/main.scss';
+import Main from "./layouts/Main";
+import "./static/css/main.scss";
 
 const Index = () => (
   <Main>
     <article className="post" id="index">
       <header>
         <div className="title">
-          <h2><Link to="/">About this site</Link></h2>
+          <h2>
+            <Link to="/">About this site</Link>
+          </h2>
           <p>A single-page app written with ReactJS </p>
         </div>
       </header>
-      <p>This website is self hosted on a server running <a href="https://www.nginx.com/">Nginx</a>.</p>
-      <p>Have a look at my <Link to="/projects">projects</Link> and feel free to <Link to="/contact">get in touch</Link>.</p>
+      <p>
+        This website is self hosted on a server running{" "}
+        <a href="https://www.nginx.com/">Nginx</a>.
+      </p>
+      <p>
+        Have a look at my <Link to="/projects">projects</Link> and feel free to{" "}
+        <Link to="/contact">get in touch</Link>.
+      </p>
     </article>
   </Main>
 );
 
 ReactDOM.render(
-  <Router basename={'./'}>
+  <Router basename={"./"}>
     <Switch>
       <Route exact path="/" component={Index} />
       <Route path="/projects" component={Projects} />
       <Route path="/contact" component={Contact} />
       <Route path="/wiki" component={MyWiki} />
       <Route path="/blog" component={Blog} />
-      
-      <Route path="/chess" component={Glee} />
-      <Route path="/assembly" component={AssemblyGuide}/>
-      <Route path="/tetris" component={Tetris}/>
-      <Route path="/snake" component={Snake}/>
 
-      <Route path="/guidegettingstarted" component={GuideGettingStarted}/>
+      <Route path="/chess" component={Glee} />
+      <Route path="/assembly" component={AssemblyGuide} />
+      <Route path="/tetris" component={Tetris} />
+      <Route path="/snake" component={Snake} />
+
+      <Route path="/guidegettingstarted" component={GuideGettingStarted} />
       <Route path="/guideresources" component={GuideResources} />
       <Route path="/guidegdb" component={GuideGdb} />
       <Route path="/guidefunctionparams" component={GuideFunctionParams} />
@@ -68,5 +74,5 @@ ReactDOM.render(
       <Route component={NotFound} status={404} />
     </Switch>
   </Router>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );

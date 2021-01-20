@@ -1,49 +1,54 @@
 export function lookupPieceToRender(value) {
-  const black = ['♚','♛', '♜', '♞', '♝', '♟']
-  const white = ['♔', '♕', '♖', '♘', '♗', '♙']
+  const black = ["♚", "♛", "♜", "♞", "♝", "♟"];
+  const white = ["♔", "♕", "♖", "♘", "♗", "♙"];
   if (!value) {
-    return null
+    return null;
   }
-  const pieceArray = value.color === 'w' ? white : black;
+  const pieceArray = value.color === "w" ? white : black;
   const map = {
-    'k': 0, 'q': 1, 'r': 2, 'n': 3, 'b': 4, 'p': 5
-  }
-  const pieceIndex = map[value.type]
-  return pieceArray[pieceIndex]
+    k: 0,
+    q: 1,
+    r: 2,
+    n: 3,
+    b: 4,
+    p: 5,
+  };
+  const pieceIndex = map[value.type];
+  return pieceArray[pieceIndex];
 }
 
 export function indexToAlgebraic(index) {
-	const column = index % 8
-  const row = 8 - Math.floor(index / 8)
+  const column = index % 8;
+  const row = 8 - Math.floor(index / 8);
   let algebraic;
-	switch (column) {
+  switch (column) {
     case 0:
-      algebraic = "a"
+      algebraic = "a";
       break;
     case 1:
-      algebraic = "b"
+      algebraic = "b";
       break;
     case 2:
-      algebraic = "c"
+      algebraic = "c";
       break;
     case 3:
-      algebraic = "d"
+      algebraic = "d";
       break;
     case 4:
-      algebraic = "e"
+      algebraic = "e";
       break;
     case 5:
-      algebraic = "f"
+      algebraic = "f";
       break;
     case 6:
-      algebraic = "g"
+      algebraic = "g";
       break;
     case 7:
-      algebraic = "h"
+      algebraic = "h";
       break;
     default:
-      return ""
-	}
-	algebraic += row.toString()
-	return algebraic
+      return "";
+  }
+  algebraic += row.toString();
+  return algebraic;
 }

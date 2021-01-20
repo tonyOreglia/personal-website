@@ -1,18 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import PropTypes from 'prop-types';
-import Main from '../../layouts/Main';
+import React from "react";
+import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import PropTypes from "prop-types";
+import Main from "../../layouts/Main";
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;
 
-const Post = ({data}) => (
+const Post = ({ data }) => (
   <Main>
     <article className="post" id="index">
       <header>
         <div className="title">
-          <h2><Link to="/blog">Blog Posts</Link></h2>
+          <h2>
+            <Link to="/blog">Blog Posts</Link>
+          </h2>
         </div>
       </header>
       <ReactMarkdown
@@ -27,10 +29,9 @@ const Post = ({data}) => (
 );
 
 Post.propTypes = {
-    data: PropTypes.shape({
-      post: PropTypes.string.isRequired
-    }).isRequired,
-  };
-  
+  data: PropTypes.shape({
+    post: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Post;

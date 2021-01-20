@@ -35,4 +35,4 @@ Here is an example of a function used to print a list of arguments from the stac
   ret
 \`\`\`
 ## [Next Page >>](/guidestringlength)
-`
+`;

@@ -92,4 +92,4 @@ Note, this will display the value at every break of the program execution, inclu
 undisplay 1
 \`\`\`
 Note that the number may be 2, 3 or something else if you have multiple variables on display mode. 
-`
+`;

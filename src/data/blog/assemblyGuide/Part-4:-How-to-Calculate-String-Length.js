@@ -25,4 +25,4 @@ So the length can be determined by looping through each byte of memory in a stri
   ret
 \`\`\`
 ## [Back to Home](/assembly)
-`
+`;

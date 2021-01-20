@@ -29,4 +29,4 @@ I am going to use this example image for guidance [here](https://github.com/kell
 My goal is to use a live docker container to step through the assembly code. Update on how I go with that soon ... 
 
 ## [Next Page >>](/guidegdb)
-`
+`;

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
 
-import Header from '../Template/Header';
-import Nav from '../Template/Nav';
+import Header from "../Template/Header";
+import Nav from "../Template/Nav";
 
 class Main extends Component {
   componentWillMount() {
@@ -15,11 +15,10 @@ class Main extends Component {
       <div id="wrapper">
         <Helmet titleTemplate="%s | Tony Oreglia" defaultTitle="Tony Oreglia" />
         <Header />
-        <div id="main">
-          {this.props.children}
-        </div>
+        <div id="main">{this.props.children}</div>
         {!this.props.fullPage && <Nav />}
-      </div>);
+      </div>
+    );
   }
 }
 

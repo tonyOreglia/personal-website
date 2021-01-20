@@ -41,7 +41,7 @@ body {
 }
 
 .game {
-  display: flex; 
+  display: flex;
 }
 
 .game-mobile {
@@ -79,7 +79,7 @@ body {
   border: 1px solid #494949 !important;
   border-radius: 3px;
 }
-  
+
 .button:hover {
   color: #494949 !important;
   border-radius: 50px;
@@ -89,12 +89,11 @@ body {
 .button-newgame {
   padding: 5px;
 }
-  
+
 button:focus {
-  outline:0;
+  outline: 0;
 }
 
 .input {
   width: 30rem;
 }
-

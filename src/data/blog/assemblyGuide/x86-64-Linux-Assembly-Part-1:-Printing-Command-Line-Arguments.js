@@ -114,4 +114,4 @@ Note the use of push and pop to pull \`argc\` and the program name off the stack
 
 Also important is the use of the \`call\` command. The is how one can call a funtion in assembly while saving the address of the line following the line that called the funtion. Then the \`ret\` command can be used to return to that line at any point. The pointer to the memory location of the line to return to is stored on the stack. Notice that this value is removed from the stack at time to enable access to the "buried" values, then it is pushed back onto the stack because that is where the \`ret\` command expects the memory address to be. 
 ## [Next Page >>](/guidefunctionparams)
-`
+`;

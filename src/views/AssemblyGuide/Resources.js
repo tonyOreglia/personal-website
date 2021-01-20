@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import Main from '../../layouts/Main';
-import { resources } from '../../data/blog/assemblyGuide/Resources';
+import React from "react";
+import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import Main from "../../layouts/Main";
+import { resources } from "../../data/blog/assemblyGuide/Resources";
 
 // Make all hrefs react router links
 const LinkRenderer = ({ ...children }) => <Link {...children} />;
@@ -12,7 +12,11 @@ const About = () => (
     <article className="post" id="index">
       <header>
         <div className="title">
-          <h2><Link to="/assembly">TONY'S GUIDE TO WRITING X86-64 ASSEMBLY LANGUAGE</Link></h2>
+          <h2>
+            <Link to="/assembly">
+              TONY'S GUIDE TO WRITING X86-64 ASSEMBLY LANGUAGE
+            </Link>
+          </h2>
           <p>Contents</p>
         </div>
       </header>

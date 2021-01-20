@@ -94,4 +94,4 @@ Docker labels are a mechanism for applying metadata to Docker objects, including
 
 For more information about using GDB to debug assembly code, see [here](http://web.cecs.pdx.edu/~apt/cs491/gdb.pdf) and [here](https://www.cs.swarthmore.edu/~newhall/cs31/resources/ia32_gdb.php). Also [here](https://www.cs.umb.edu/~cheungr/cs341/Using_gdb_for_Assembly.pdf)
 ## [Next Page >>](/guidedebugwithdocker)
-`
+`;
