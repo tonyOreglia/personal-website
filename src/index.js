@@ -36,8 +36,10 @@ const Index = () => (
         </div>
       </header>
       <p>
-        This website is self hosted on a server running{" "}
-        <a href="https://www.nginx.com/">Nginx</a>.
+        This website is hosted on a home server running{" "}
+        <a href="https://www.nginx.com/">Nginx</a>. Changes to this website are
+        automatically tested and deployed with{" "}
+        <a href="https://app.codeship.com/home">CodeShip</a>.
       </p>
       <p>
         Have a look at my <Link to="/projects">projects</Link> and feel free to{" "}
