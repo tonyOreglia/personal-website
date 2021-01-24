@@ -1,3 +1,9 @@
+import * as _ from "lodash";
+import { data } from "../index";
+export const postInfo = _.omit(
+  data.find((post) => post.id === 1),
+  "blogIcon"
+);
 export const debugWithDocker = `
 # Using Docker to Compile, Link, Run and Debug Assembly Language Code
 ### tldr; 
@@ -34,7 +40,7 @@ This is just a build step. We do not need the container up and running once it's
 We want to persist the product of the build step. This creates a Docker volume which persists in our local directory after the Docker container is torn down. 
 
 
-#### [-w](https://docs.docker.com/engine/reference/run/#workdir ) /app
+#### [-w](https://docs.docker.com/engine/reference/run/#workdir) /app
 Override the working directory that is defined in the base image. 
 
 #### iron/ruby 

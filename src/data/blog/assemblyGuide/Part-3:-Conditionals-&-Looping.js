@@ -1,5 +1,10 @@
+import * as _ from "lodash";
+import { data } from "../index";
+export const postInfo = _.omit(
+  data.find((post) => post.id === 1),
+  "blogIcon"
+);
 export const conditionsAndLooping = `
-# Writing an x86-64 Assembly Language Programm
 ### Part 3: Conditionals and Looping
 Looping is a specific application of jumping on a conditional. Essentially this post is about writing conditional statements to branch one of two ways depending on some condition. 
 

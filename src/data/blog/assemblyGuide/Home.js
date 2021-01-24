@@ -1,3 +1,5 @@
+import { data } from "../index";
+export const postInfo = data.find((post) => post.id === 1);
 export const home = `
 ### Getting Started
 1. [Getting Started with Writing Assembly on Mac](/guidegettingstarted)

@@ -1,3 +1,9 @@
+import * as _ from "lodash";
+import { data } from "../index";
+export const postInfo = _.omit(
+  data.find((post) => post.id === 1),
+  "blogIcon"
+);
 export const printing = `
 # Writing an x86-64 Assembly Language Programm
 ### Part 1: Printing Command Line Arguments

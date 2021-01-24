@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-
 import Header from "../Template/Header";
 import Nav from "../Template/Nav";
 

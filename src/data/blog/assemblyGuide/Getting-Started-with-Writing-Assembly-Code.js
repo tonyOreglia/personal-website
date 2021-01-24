@@ -1,3 +1,9 @@
+import * as _ from "lodash";
+import { data } from "../index";
+export const postInfo = _.omit(
+  data.find((post) => post.id === 1),
+  "blogIcon"
+);
 export const gettingStarted = `
 # Getting Started with Writing Assembly Code
 Getting prepared to write assembly language can be a bit confusing. There are a number of tools that can compile 

@@ -1,3 +1,9 @@
+import * as _ from "lodash";
+import { data } from "../index";
+export const postInfo = _.omit(
+  data.find((post) => post.id === 1),
+  "blogIcon"
+);
 export const howToUseGdb = `
 # How to use GDB within a Docker Container
 ###tldr; 

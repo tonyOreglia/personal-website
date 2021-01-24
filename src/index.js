@@ -7,19 +7,20 @@ import Blog from "./views/BlogTOC";
 import Projects from "./views/Projects";
 import Glee from "./views/Glee";
 import NotFound from "./views/NotFound";
-import AssemblyGuide from "./views/AssemblyGuide/AssemblyGuide";
+import AssemblyGuide from "./views/blog/AssemblyGuide/AssemblyGuide";
 import Tetris from "./views/Tetris";
 import Snake from "./views/Snake";
-import GuideResources from "./views/AssemblyGuide/Resources";
 
-import GuideGettingStarted from "./views/AssemblyGuide/GettingStarted";
-import GuideConditions from "./views/AssemblyGuide/Conditions";
-import GuideDebugWithDocker from "./views/AssemblyGuide/DebugWithDocker";
-import GuideFunctionParams from "./views/AssemblyGuide/Functionparams";
-import GuideGdb from "./views/AssemblyGuide/Gdb";
-import GuidePrinting from "./views/AssemblyGuide/Printing";
-import GuideQuickReference from "./views/AssemblyGuide/QuickReference";
-import GuideStringLength from "./views/AssemblyGuide/StringLength";
+import BlogDynamicIp from "./views/blog/dynamicIp";
+import GuideResources from "./views/blog/AssemblyGuide/Resources";
+import GuideGettingStarted from "./views/blog/AssemblyGuide/GettingStarted";
+import GuideConditions from "./views/blog/AssemblyGuide/Conditions";
+import GuideDebugWithDocker from "./views/blog/AssemblyGuide/DebugWithDocker";
+import GuideFunctionParams from "./views/blog/AssemblyGuide/Functionparams";
+import GuideGdb from "./views/blog/AssemblyGuide/Gdb";
+import GuidePrinting from "./views/blog/AssemblyGuide/Printing";
+import GuideQuickReference from "./views/blog/AssemblyGuide/QuickReference";
+import GuideStringLength from "./views/blog/AssemblyGuide/StringLength";
 
 import Main from "./layouts/Main";
 import "./static/css/main.scss";
@@ -63,6 +64,7 @@ ReactDOM.render(
       <Route path="/tetris" component={Tetris} />
       <Route path="/snake" component={Snake} />
 
+      <Route path="/dynamicip" component={BlogDynamicIp} />
       <Route path="/guidegettingstarted" component={GuideGettingStarted} />
       <Route path="/guideresources" component={GuideResources} />
       <Route path="/guidegdb" component={GuideGdb} />
