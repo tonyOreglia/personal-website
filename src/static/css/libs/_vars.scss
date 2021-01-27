@@ -42,6 +42,15 @@ $font: (
   kerning-heading: 0.25em,
 );
 
+$bg: #ffffff;
+$bg-alt: #f4f4f4;
+$fg: #646464;
+$fg-bold: #3c3b3b;
+$bg-dark-mode: #3b444b;
+$bg-alt-dark-mode: #232b2b;
+$fg-dark-mode: #EEEEEB;
+$fg-bold-dark-mode: #E8E8E5;
+
 // Palette.
 $palette: (
   bg: #ffffff,
@@ -54,3 +63,17 @@ $palette: (
   border-alt: rgba(160, 160, 160, 0.65),
   accent: #2e59ba,
 );
+
+:root {
+  --bg: #{$bg};
+  --bg-alt: #{$bg-alt};
+  --fg: #{$fg};
+  --fg-bold: #{fg-bold};
+}
+
+.dark {
+  --bg: #{$bg-dark-mode};
+  --bg-alt: #{$bg-alt-dark-mode};
+  --fg: #{$fg-dark-mode};
+  --fg-bold: #{fg-bold-dark-mode};
+}
