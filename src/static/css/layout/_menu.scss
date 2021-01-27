@@ -13,7 +13,7 @@
     ("transform #{_duration(menu)} ease", "visibility #{_duration(menu)}")
   );
   -webkit-overflow-scrolling: touch;
-  background: _palette(bg);
+  background: var(--bg);
   border-left: solid 1px _palette(border);
   box-shadow: none;
   height: 100%;

@@ -20,9 +20,7 @@ const Contact = () => {
         <div className="email-at">
           <p>
             Feel free to get in touch. You can email me at{" "}
-            <p>
-              <a href="mailto:tony.oreglia@gmail.com">tony.oreglia@gmail.com</a>
-            </p>
+            <a href="mailto:tony.oreglia@gmail.com">tony.oreglia@gmail.com</a>
           </p>
         </div>
         <ul className="icons">
