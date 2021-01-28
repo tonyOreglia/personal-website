@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "../images/me_icon.jpg";
 
 import data from "../data/contact";
 class Nav extends Component {
-  toggleDarkMode = () => {
-    console.log("made it here");
-    document.body.classList.toggle("dark");
-  };
+  // toggleDarkMode = () => {
+  //   document.body.classList.toggle("dark");
+  // };
 
   render() {
     return (
@@ -38,8 +38,8 @@ class Nav extends Component {
           <ul className="actions"></ul>
         </section>
         <div>
-          <button data-switch-dark onClick={() => this.toggleDarkMode()}>
-            Dark mode
+          <button data-switch-dark onClick={() => this.props.toggleDarkMode()}>
+            Dark Mode
           </button>
         </div>
         <section id="footer">
@@ -58,5 +58,9 @@ class Nav extends Component {
     );
   }
 }
+
+Nav.propTypes = {
+  toggleDarkMode: PropTypes.func,
+};
 
 export default Nav;

@@ -5,9 +5,20 @@ import Header from "../Template/Header";
 import Nav from "../Template/Nav";
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      darkMode: false,
+    };
+  }
+
   componentWillMount() {
     window.scrollTo(0, 0);
   }
+
+  toggleDarkMode = () => {
+    document.body.classList.toggle("dark");
+  };
 
   render() {
     return (
@@ -15,7 +26,7 @@ class Main extends Component {
         <Helmet titleTemplate="%s | Tony Oreglia" defaultTitle="Tony Oreglia" />
         <Header />
         <div id="main">{this.props.children}</div>
-        {!this.props.fullPage && <Nav />}
+        {!this.props.fullPage && <Nav toggleDarkMode={this.toggleDarkMode} />}
       </div>
     );
   }
