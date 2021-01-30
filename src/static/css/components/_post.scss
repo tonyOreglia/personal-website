@@ -261,3 +261,8 @@
     }
   }
 }
+
+.blogpost {
+  @extend .post;
+  width: 50em;
+}

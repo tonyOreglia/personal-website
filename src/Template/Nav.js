@@ -6,10 +6,6 @@ import icon from "../images/me_icon.jpg";
 
 import data from "../data/contact";
 class Nav extends Component {
-  // toggleDarkMode = () => {
-  //   document.body.classList.toggle("dark");
-  // };
-
   render() {
     return (
       <section id="sidebar">

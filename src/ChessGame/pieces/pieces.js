@@ -37,7 +37,7 @@ export default function Piece(props) {
   }
   return (
     <img
-      class="piece"
+      className="piece"
       draggable={true}
       onDragStart={(e) => {
         console.log("drag starting index: ", props.index);

@@ -18,9 +18,7 @@ const Index = () => (
           <p>Golang Chess Engine. Frontend built with React.</p>
         </div>
       </header>
-      <p>
-        <Game chess={Chess()} />
-      </p>
+      <Game chess={Chess()} />
       <p>
         {" "}
         Chess Engine Source available{" "}

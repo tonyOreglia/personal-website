@@ -6,14 +6,11 @@ import Nav from "../Template/Nav";
 
 class Main extends Component {
   constructor(props) {
+    window.scrollTo(0, 0);
     super(props);
     this.state = {
       darkMode: false,
     };
-  }
-
-  componentWillMount() {
-    window.scrollTo(0, 0);
   }
 
   toggleDarkMode = () => {

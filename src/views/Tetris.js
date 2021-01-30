@@ -5,8 +5,8 @@ import Main from "../layouts/Main";
 const Tetris = () => {
   return (
     <Main>
-      <Helmet title="Tetris" />
       <article className="post" id="tetris">
+        <Helmet title="Tetris" />
         <iframe
           title="tetris"
           width="100%"

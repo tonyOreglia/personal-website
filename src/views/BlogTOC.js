@@ -19,7 +19,7 @@ const Blog = () => {
         {data.map((post) => (
           <ul className="blog-toc" key={post.title}>
             <li>
-              {formatDate(post.date)} - <a href={post.link}>{post.title}</a>
+              {formatDate(post.date)} - <Link to={post.link}>{post.title}</Link>
             </li>
           </ul>
         ))}

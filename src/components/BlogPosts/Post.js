@@ -1,59 +1,60 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
-import Header from "../../Template/Header";
+import Main from "../../layouts/Main";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import icon from "../../images/me_face.jpg";
 
 // Make all hrefs react router links
-const LinkRenderer = ({ ...children }) => <Link {...children} />;
+function RouterLink(props) {
+  return props.href.match(/^(https?:)?\/\//) ? (
+    <a href={props.href}>{props.children}</a>
+  ) : (
+    <Link to={props.href}>{props.children}</Link>
+  );
+}
 
-const Post = ({ data }) => (
-  <div id="wrapper">
-    <Helmet titleTemplate="%s | Tony Oreglia" defaultTitle="Tony Oreglia" />
-    <Header />
-    <body class="single is-preload">
-      <div id="wrapper">
-        <div id="main">
-          <article class="post">
-            <header>
-              <div className="title">
-                <h2>
-                  <Link to="/blog">{data.title}</Link>
-                </h2>
-              </div>
-              <div class="meta">
-                <time class="published">{data.date}</time>
-                <a href="/contact" class="author">
-                  <span class="name">{data.author}</span>
-                  <img src={icon} alt="" />
-                </a>
-              </div>
-            </header>
-            <span class="image featured">
-              <img src={data.blogIcon} alt="" />
-            </span>
-            <ReactMarkdown
-              source={data.post}
-              renderers={{
-                Link: LinkRenderer,
-              }}
-              escapeHtml={false}
-            />
-            <footer>
-              <ul class="stats">
-                <li>
-                  <a href="/dynamicip">Back to top</a>
-                </li>
-              </ul>
-            </footer>
-          </article>
-        </div>
-      </div>
-    </body>
-  </div>
-);
+const Post = ({ data }) => {
+  return (
+    <Main>
+      <Helmet title="BlogPost" />
+      <article className="blogpost" id="post">
+        <header>
+          <div className="title">
+            <h2>
+              <Link to={data.link}>{data.title}</Link>
+            </h2>
+          </div>
+          <div className="meta">
+            <time className="published">{data.date}</time>
+            <Link to="/contact" className="author">
+              <span className="name">{data.author}</span>
+              <img src={icon} alt="" />
+            </Link>
+          </div>
+        </header>
+        <span className="image featured">
+          <img src={data.blogIcon} alt="" />
+        </span>
+        <ReactMarkdown
+          source={data.post}
+          renderers={{
+            link: RouterLink,
+          }}
+          escapeHtml={false}
+        />
+        <footer>
+          <ul className="stats">
+            <li>
+              <Link to="/dynamicip">Back to top</Link>
+            </li>
+          </ul>
+        </footer>
+      </article>
+    </Main>
+  );
+};
 
 Post.propTypes = {
   data: PropTypes.shape({

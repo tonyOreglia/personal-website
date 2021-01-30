@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import url from "url";
@@ -8,15 +9,15 @@ const Cell = ({ data }) => (
     <article className="mini-post">
       <header>
         <h3>
-          <a href={data.link}>{data.title}</a>
+          <Link to={data.link}>{data.title}</Link>
         </h3>
         <time className="published">
           {dayjs(data.date).format("MMMM, YYYY")}
         </time>
       </header>
-      <a href={data.link} className="image">
+      <Link to={data.link} className="image">
         <img src={url.resolve("./", data.image)} alt={data.title} />
-      </a>
+      </Link>
       <div className="description">
         <p>{data.desc}</p>
       </div>

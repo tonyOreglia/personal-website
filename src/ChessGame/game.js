@@ -210,9 +210,9 @@ export default class Game extends React.Component {
       }
       if (i === history.length - 1) {
         moves.push(
-          <div class="button_cont" key={i}>
+          <div className="button_cont" key={i}>
             <button
-              class="button button-move"
+              className="button button-move"
               key={i * 2}
               onClick={() => this.returnToPreviousMove(i)}
             >{`${position.move.from}, ${position.move.to}`}</button>
@@ -221,14 +221,14 @@ export default class Game extends React.Component {
         return;
       }
       moves.push(
-        <div class="button_cont" key={i}>
+        <div className="button_cont" key={i}>
           <button
-            class="button button-move"
+            className="button button-move"
             key={i * 2}
             onClick={() => this.returnToPreviousMove(i)}
           >{`${position.move.from}, ${position.move.to}`}</button>
           <button
-            class="button button-move"
+            className="button button-move"
             key={i * 2 + 1}
             onClick={() => this.returnToPreviousMove(i + 1)}
           >{`${history[i + 1].move.from}, ${history[i + 1].move.to}`}</button>
@@ -249,7 +249,7 @@ export default class Game extends React.Component {
     return (
       <input
         placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-        class="input"
+        className="input"
         onKeyDown={keyPress}
       />
     );
@@ -272,13 +272,13 @@ export default class Game extends React.Component {
           />
           <div className="game-info">
             <button
-              class="button button-newgame"
+              className="button button-newgame"
               onClick={this.startNewGameAsWhite}
             >
               {"Play as White"}
             </button>
             <button
-              class="button button-newgame"
+              className="button button-newgame"
               onClick={this.startNewGameAsBlack}
             >
               {"Play as Black"}
@@ -287,7 +287,7 @@ export default class Game extends React.Component {
               this.fenInput()
             ) : (
               <button
-                class="button button-newgame"
+                className="button button-newgame"
                 onClick={() => this.setState({ fenInputOpen: true })}
               >
                 {"Set position using FEN notation"}
@@ -321,13 +321,13 @@ export default class Game extends React.Component {
         </div>
         <div className="game-mobile">
           <button
-            class="button button-newgame"
+            className="button button-newgame"
             onClick={this.startNewGameAsWhite}
           >
             {"Play as White"}
           </button>
           <button
-            class="button button-newgame"
+            className="button button-newgame"
             onClick={this.startNewGameAsBlack}
           >
             {"Play as Black"}
@@ -336,7 +336,7 @@ export default class Game extends React.Component {
             this.fenInput()
           ) : (
             <button
-              class="button button-newgame"
+              className="button button-newgame"
               onClick={() => this.setState({ fenInputOpen: true })}
             >
               {"Set position using FEN notation"}

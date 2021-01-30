@@ -31,3 +31,4 @@ Note that, port 80 must be opened via the router configuration settings for cert
 - [ ] add option to like blog posts
 - [ ] add option to sign up for newletter / blog updates
 - [ ] update codeship to only deploy on merge events
+- [ ] implement sub paths -- https://reactrouter.com/core/api/withRouter
