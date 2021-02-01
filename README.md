@@ -20,7 +20,7 @@ Note that, port 80 must be opened via the router configuration settings for cert
 
 - [x] ~~_remove scroll bar to enable snake game to work without disruption OR link out of the app for snake OR make snake game work with mouse pointer_~~ [2021-01-06] made it mouse controlled
 - [x] ~~_add a blog tab_~~ [2021-01-10]
-- [ ] do a dark mode tab
+- [X] ~~*do a dark mode tab*~~ [2021-01-31]
 - [x] ~~_integrate with codeship_~~ [2021-01-18]
 - [ ] make tiddlywiki deep linkable
 - [x] ~~_implement some auto formatting_~~ [2021-01-20]
@@ -29,6 +29,6 @@ Note that, port 80 must be opened via the router configuration settings for cert
 - [X] ~~*fix blog post width to make it static == factor out the blog post template*~~ [2021-01-25]
 - [ ] add ability to see how much traffic I'm getting
 - [ ] add option to like blog posts
-- [ ] add option to sign up for newletter / blog updates
+- [ ] add option to sign up for newsletter / blog updates
 - [ ] update codeship to only deploy on merge events
 - [ ] implement sub paths -- https://reactrouter.com/core/api/withRouter
