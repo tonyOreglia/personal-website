@@ -1,6 +1,14 @@
 // TODO Add a couple lines about each project
 const data = [
   {
+    title: "BreadCrumbs",
+    subtitle: "BreadCrumbs allow users to create and find location based data",
+    link: "/breadcrumbs",
+    image: "/images/projects/breadcrumbs.jpg",
+    date: "2021-02-06",
+    desc: "BreadCrumbs allow users to create and find location based data",
+  },
+  {
     title: "GLEE: Golang Chess Engine with React Frontend",
     subtitle: "Golang Chess Engine with React Frontend",
     link: "/chess",

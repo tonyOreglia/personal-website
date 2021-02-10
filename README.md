@@ -22,13 +22,30 @@ Note that, port 80 must be opened via the router configuration settings for cert
 - [x] ~~_add a blog tab_~~ [2021-01-10]
 - [X] ~~*do a dark mode tab*~~ [2021-01-31]
 - [x] ~~_integrate with codeship_~~ [2021-01-18]
-- [ ] make tiddlywiki deep linkable
 - [x] ~~_implement some auto formatting_~~ [2021-01-20]
 - [X] ~~*mention codeship in the website description*~~ [2021-01-21]
-- [ ] create a mobile version of tetris / snake
 - [X] ~~*fix blog post width to make it static == factor out the blog post template*~~ [2021-01-25]
-- [ ] add ability to see how much traffic I'm getting
+- [X] ~~*add ability to see how much traffic I'm getting*~~ [2021-02-02]
+- [X] ~~*filter out my IP from analytics*~~ [2021-02-06]
+- [ ] add project and blogpost for breadcrumbs
+- [ ] create a mobile version of tetris / snake
 - [ ] add option to like blog posts
 - [ ] add option to sign up for newsletter / blog updates
-- [ ] update codeship to only deploy on merge events
+- [ ] publish tiddlywiki scripts to tiddlywiki util repo and share out with blog post 
 - [ ] implement sub paths -- https://reactrouter.com/core/api/withRouter
+- [ ] make tiddlywiki deep linkable
+- [ ] fix scrolling issues
+  - [ ] tiddlywiki scrolling issue
+
+
+## add project and blogpost for breadcrumbs Tasks
+- [ ] implement API calls from react to breadcrumbs backend
+  - [ ] add config for local / production URL 
+- [ ] spin up breadcrumbs on server
+  - [ ] install postgresql / docker on server 
+- [ ] put breadcrumbs behind nginx
+- [ ] expose port for breadcrumbs
+- [ ] ssl certificates for breadcrumbs
+- [ ] get all breadcrumbs endpoint
+- [ ] implement breadcrumb creation UI
+- [ ] 

@@ -10,6 +10,7 @@ import NotFound from "./views/NotFound";
 import AssemblyGuide from "./views/blog/AssemblyGuide/AssemblyGuide";
 import Tetris from "./views/Tetris";
 import Snake from "./views/Snake";
+import BreadCrumbs from "./views/breadcrumbs/BreadCrumbs";
 
 import BlogDynamicIp from "./views/blog/dynamicIp";
 import DockerPostgres from "./views/blog/dockerPostgres";
@@ -64,6 +65,7 @@ ReactDOM.render(
       <Route path="/assembly" component={AssemblyGuide} />
       <Route path="/tetris" component={Tetris} />
       <Route path="/snake" component={Snake} />
+      <Route path="/breadcrumbs" component={BreadCrumbs} />
 
       <Route path="/dynamicip" component={BlogDynamicIp} />
       <Route path="/dockerpostgres" component={DockerPostgres} />
