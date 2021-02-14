@@ -16,6 +16,7 @@ function RouterLink(props) {
 }
 
 const Post = ({ data }) => {
+  window.scrollTo(0, 0);
   return (
     <Main>
       <Helmet title="BlogPost" />
@@ -47,7 +48,7 @@ const Post = ({ data }) => {
         <footer>
           <ul className="stats">
             <li>
-              <Link to="/dynamicip">Back to top</Link>
+              <Link to={data.link}>Back to top</Link>
             </li>
           </ul>
         </footer>
