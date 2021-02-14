@@ -1,5 +1,14 @@
 export const data = [
   {
+    title: "Troubleshooting PostgreSQL Docker",
+    subtitle: "",
+    link: "/dockerpostgres",
+    date: "2021-02-14",
+    id: 3,
+    author: "Tony Oreglia",
+    blogIcon: "/images/docker-postgres.png",
+  },
+  {
     title: "Implementing Dynamic IP with Domain Hosted on DigitalOcean",
     subtitle: "",
     link: "/dynamicip",

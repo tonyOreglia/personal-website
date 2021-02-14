@@ -12,6 +12,7 @@ import Tetris from "./views/Tetris";
 import Snake from "./views/Snake";
 
 import BlogDynamicIp from "./views/blog/dynamicIp";
+import DockerPostgres from "./views/blog/dockerPostgres";
 import GuideResources from "./views/blog/AssemblyGuide/Resources";
 import GuideGettingStarted from "./views/blog/AssemblyGuide/GettingStarted";
 import GuideConditions from "./views/blog/AssemblyGuide/Conditions";
@@ -65,6 +66,7 @@ ReactDOM.render(
       <Route path="/snake" component={Snake} />
 
       <Route path="/dynamicip" component={BlogDynamicIp} />
+      <Route path="/dockerpostgres" component={DockerPostgres} />
       <Route path="/guidegettingstarted" component={GuideGettingStarted} />
       <Route path="/guideresources" component={GuideResources} />
       <Route path="/guidegdb" component={GuideGdb} />
