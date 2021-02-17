@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import Main from "../../layouts/Main";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-import { fetchBreadcrumbs } from "../../Connectors/breadcrumbs";
+import { fetchBreadcrumbs, saveBreadcrumb } from "../../Connectors/breadcrumbs";
 import config from "../../config";
 
 /**
  * additional changes needed
  * * [x] new breadcrumb endpoint for retrieving all crumbs
- * * [ ] retrieve users device location from browser
- * * [ ] button for creating breadcrumb at current location
+ * * [x] retrieve users device location from browser
+ * * [x] button for creating breadcrumb at current location
  * * [ ] blog post
  * * [ ] explanation blurb of some sort
  * * [ ] better icon
+ * * [ ] loading icon
+ * * [ ] stop user from double clicking the breadcrumb button
  */
 const mapStyles = {
   width: "100%",
@@ -38,27 +40,41 @@ class MapContainer extends Component {
     this.fetchBreadCrumbs();
   }
 
-  click = (_mapProps, _map, clickEvent) => {
-    const message = prompt("Please enter your breadcrumb message");
-    if (!message) {
-      alert("breadcrumb needs a message; bare your soul");
-      return;
-    }
-    const lat = clickEvent.latLng.lat();
-    const lng = clickEvent.latLng.lng();
-    this.setState({
-      breadcrumbs: this.state.breadcrumbs.concat(
-        <Marker
-          key={this.state.breadcrumbs.length}
-          label={message}
-          position={{ lat, lng }}
-        />
-      ),
+  click = (_mapProps, _map) => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      if (!position.coords.longitude || !position.coords.latitude) {
+        alert("you need to enable geo-location to drop a breadcrumb");
+        return;
+      }
+      const message = prompt("Please enter your breadcrumb message");
+      if (!message) {
+        alert("breadcrumb needs a message; bare your soul");
+        return;
+      }
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      saveBreadcrumb(lat, lng, message).then((res) => {
+        if (res.status !== 200) {
+          alert(
+            "sorry, your breadcrumb failed to save; tell Tony\n\n",
+            JSON.stringify(res)
+          );
+        }
+        this.setState({
+          breadcrumbs: this.state.breadcrumbs.concat(
+            <Marker
+              key={this.state.breadcrumbs.length}
+              label={message}
+              position={{ lat, lng }}
+            />
+          ),
+        });
+      });
     });
   };
 
   fetchBreadCrumbs = () => {
-    fetchBreadcrumbs(-35.39833, -9.045, 500000).then((res) => {
+    fetchBreadcrumbs().then((res) => {
       const markers = convertBreadCrumbsToGoogleMapMarkers(res.data);
       this.setState({ breadcrumbs: markers });
     });
@@ -66,19 +82,27 @@ class MapContainer extends Component {
 
   render() {
     return (
-      <Map
-        google={this.props.google}
-        zoom={2}
-        style={mapStyles}
-        disableDefaultUI={false}
-        initialCenter={{
-          lat: -1.2884,
-          lng: 36.8233,
-        }}
-        onClick={this.click}
-      >
-        {this.state.breadcrumbs}
-      </Map>
+      <div>
+        <button
+          style={{ marginBottom: 20, marginLeft: 20 }}
+          className="button"
+          onClick={this.click}
+        >
+          drop a breadcrumb!
+        </button>
+        <Map
+          google={this.props.google}
+          zoom={2}
+          style={mapStyles}
+          disableDefaultUI={false}
+          initialCenter={{
+            lat: -1.2884,
+            lng: 36.8233,
+          }}
+        >
+          {this.state.breadcrumbs}
+        </Map>
+      </div>
     );
   }
 }

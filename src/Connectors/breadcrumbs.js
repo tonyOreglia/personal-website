@@ -1,14 +1,14 @@
 import * as axios from "axios";
 
-export const fetchBreadcrumbs = (long, lat, radius) => {
+export const fetchBreadcrumbs = () => {
   return axios.get("/allNotes");
 };
 
-export const saveBreadcrumb = (longitude, latitude, altitude, message) => {
+export const saveBreadcrumb = (latitude, longitude, message) => {
   return axios.post("/note", {
     message,
     longitude,
     latitude,
-    altitude,
+    altitude: 0,
   });
 };
