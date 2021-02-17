@@ -1,9 +1,18 @@
-import * as axios from "axios";
 import React, { Component } from "react";
 import Main from "../../layouts/Main";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-import config from "../../../config/config";
+import { fetchBreadcrumbs } from "../../Connectors/breadcrumbs";
+import config from "../../config";
 
+/**
+ * additional changes needed
+ * * [x] new breadcrumb endpoint for retrieving all crumbs
+ * * [ ] retrieve users device location from browser
+ * * [ ] button for creating breadcrumb at current location
+ * * [ ] blog post
+ * * [ ] explanation blurb of some sort
+ * * [ ] better icon
+ */
 const mapStyles = {
   width: "100%",
   height: "100%",
@@ -31,6 +40,10 @@ class MapContainer extends Component {
 
   click = (_mapProps, _map, clickEvent) => {
     const message = prompt("Please enter your breadcrumb message");
+    if (!message) {
+      alert("breadcrumb needs a message; bare your soul");
+      return;
+    }
     const lat = clickEvent.latLng.lat();
     const lng = clickEvent.latLng.lng();
     this.setState({
@@ -45,16 +58,10 @@ class MapContainer extends Component {
   };
 
   fetchBreadCrumbs = () => {
-    axios
-      .post("/getNotes", {
-        longitude: -35.39833,
-        latitude: -9.045,
-        radius_in_meters: 500000,
-      })
-      .then((res) => {
-        const markers = convertBreadCrumbsToGoogleMapMarkers(res.data);
-        this.setState({ breadcrumbs: markers });
-      });
+    fetchBreadcrumbs(-35.39833, -9.045, 500000).then((res) => {
+      const markers = convertBreadCrumbsToGoogleMapMarkers(res.data);
+      this.setState({ breadcrumbs: markers });
+    });
   };
 
   render() {
