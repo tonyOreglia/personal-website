@@ -24,6 +24,8 @@ import GuidePrinting from "./views/blog/AssemblyGuide/Printing";
 import GuideQuickReference from "./views/blog/AssemblyGuide/QuickReference";
 import GuideStringLength from "./views/blog/AssemblyGuide/StringLength";
 
+import data from "./data/projects";
+
 import Main from "./layouts/Main";
 import "./static/css/main.scss";
 
@@ -65,7 +67,16 @@ ReactDOM.render(
       <Route path="/assembly" component={AssemblyGuide} />
       <Route path="/tetris" component={Tetris} />
       <Route path="/snake" component={Snake} />
-      <Route path="/breadcrumbs" component={BreadCrumbs} />
+
+      <Route
+        path="/breadcrumbs"
+        render={(props) => (
+          <BreadCrumbs
+            {...props}
+            breadcrumbsData={data.find((d) => d.title === "BreadCrumbs")}
+          />
+        )}
+      />
 
       <Route path="/dynamicip" component={BlogDynamicIp} />
       <Route path="/dockerpostgres" component={DockerPostgres} />
