@@ -122,12 +122,15 @@ class GoogleMap extends Component {
           lat={latitude}
           lng={longitude}
         >
-          <button className="breadcrumb-marker">
-            <img
-              src="/images/marker.png"
-              alt="breadcrumbs for all"
-              onClick={console.log("you clicked me!! :grimace")}
-            />
+          <button
+            className="breadcrumb-marker"
+            onClick={(e) => {
+              alert(cluster.properties.message);
+              // so that the map onClick is not called
+              e.stopPropagation();
+            }}
+          >
+            <img src="/images/marker.png" alt="breadcrumbs for all" />
           </button>
         </Marker>
       );
