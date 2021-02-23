@@ -98,6 +98,7 @@ class GoogleMap extends Component {
                 height: `${
                   10 + (pointCount / this.geoJSONPoints.length) * 20
                 }px`,
+                cursor: "pointer",
               }}
               onClick={() => {
                 const expansionZoom = Math.min(
@@ -122,7 +123,8 @@ class GoogleMap extends Component {
           lat={latitude}
           lng={longitude}
         >
-          <button
+          <div
+            style={{ cursor: "pointer" }}
             className="breadcrumb-marker"
             onClick={(e) => {
               alert(cluster.properties.message);
@@ -131,7 +133,7 @@ class GoogleMap extends Component {
             }}
           >
             <img src="/images/marker.png" alt="breadcrumbs for all" />
-          </button>
+          </div>
         </Marker>
       );
     });
