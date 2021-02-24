@@ -6,6 +6,7 @@ import GoogleMapReact from "google-map-react";
 import Supercluster from "supercluster";
 import ReactMarkdown from "react-markdown";
 import { fetchBreadcrumbs, saveBreadcrumb } from "../../Connectors/breadcrumbs";
+import Modal from "./modal";
 import config from "../../config";
 import "./breadcrumbs.css";
 
@@ -15,15 +16,17 @@ import "./breadcrumbs.css";
  * [x] retrieve users device location from browser
  * [x] button for creating breadcrumb at current location
  * [ ] blog post
+ * [ ] modal for displaying breadcrumbs::: https://material-ui.com/components/dialogs/
+ * [x] modal for creating breadcrumbs
  * [ ] explanation blurb of some sort
- * [ ] better crumb icon
+ * [x] better crumb icon
  * [ ] loading icon
  * [ ] stop user from double clicking the breadcrumb button
- * [ ] display for multiple breadcrumbs
+ * [x] display for multiple breadcrumbs
  * * cycle through by date
  * * pop up with list of breadcrumbs
  * *
- * [ ] add link to instructions on enabling locatin on various devices
+ * [ ] add link to instructions on enabling location on various devices
  * [ ] add option to add name / nickname
  * [ ] new breadcrumbs endpoint to handle retrieval of points within box
  *
@@ -68,6 +71,8 @@ class GoogleMap extends Component {
       center: DEFAULT_CENTER,
       zoom: DEFAULT_ZOOM,
       bounds: null,
+      modalOpen: false,
+      devicePosition: {},
     };
     this.supercluster = new Supercluster({
       radius: 40,
@@ -139,7 +144,8 @@ class GoogleMap extends Component {
     });
   };
 
-  createNewCustomLocationBreadcrumb = (clickEvent) => {
+  // not currently used
+  _createNewCustomLocationBreadcrumb = (clickEvent) => {
     const { lat, lng } = clickEvent;
     const message = prompt("Please enter your breadcrumb message");
     if (!message) {
@@ -175,6 +181,28 @@ class GoogleMap extends Component {
     );
   };
 
+  saveNewBreadcrumb = (lat, lng, message) => {
+    saveBreadcrumb(lat, lng, message).then((res) => {
+      if (res.status !== 200) {
+        alert(
+          "sorry, your breadcrumb failed to save; tell Tony\n\n",
+          JSON.stringify(res)
+        );
+      }
+
+      this.geoJSONPoints.push(
+        newGeoJsonPoint(this.geoJSONPoints.length, message, lng, lat)
+      );
+
+      this.supercluster.load(this.geoJSONPoints);
+      this.setState({
+        breadcrumbs: this.convertClustersToMarkers(
+          this.supercluster.getClusters(this.state.bounds, this.state.zoom)
+        ),
+      });
+    });
+  };
+
   /**
    * create new breadcrumb at device's current location
    */
@@ -185,38 +213,15 @@ class GoogleMap extends Component {
           alert("you need to enable geo-location to drop a breadcrumb");
           return;
         }
-        const message = prompt("Please enter your breadcrumb message");
-        if (!message) {
-          alert("breadcrumb needs a message; bare your soul");
-          return;
-        }
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
-        saveBreadcrumb(lat, lng, message).then((res) => {
-          if (res.status !== 200) {
-            alert(
-              "sorry, your breadcrumb failed to save; tell Tony\n\n",
-              JSON.stringify(res)
-            );
-          }
-
-          this.geoJSONPoints.push(
-            newGeoJsonPoint(this.geoJSONPoints.length, message, lng, lat)
-          );
-
-          this.supercluster.load(this.geoJSONPoints);
-          this.setState({
-            breadcrumbs: this.convertClustersToMarkers(
-              this.supercluster.getClusters(this.state.bounds, this.state.zoom)
-            ),
-          });
-        });
+        this.setState({ modalOpen: true, devicePosition: { lat, lng } });
       },
       (error) => {
         alert(`Error retrieving device location: ${error.message}`);
         console.error(error);
       },
-      { timeout: 3000, enableHighAccuracy: false, maximumAge: 0 }
+      { timeout: 4000, enableHighAccuracy: false, maximumAge: 0 }
     );
   };
 
@@ -249,6 +254,20 @@ class GoogleMap extends Component {
   render() {
     return (
       <div>
+        <Modal
+          open={this.state.modalOpen}
+          handleSave={(message) => {
+            this.setState({ modalOpen: false });
+            this.saveNewBreadcrumb(
+              this.state.devicePosition.lat,
+              this.state.devicePosition.lng,
+              message
+            );
+          }}
+          handleClose={() => {
+            this.setState({ modalOpen: false });
+          }}
+        ></Modal>
         <button
           style={{ marginBottom: 20, marginLeft: 20 }}
           className="button"
@@ -278,7 +297,6 @@ class GoogleMap extends Component {
                 breadcrumbs: this.getClusterMarkersForUpdatedMap(zoom, bounds),
               });
             }}
-            onClick={this.createNewCustomLocationBreadcrumb}
           >
             {this.state.breadcrumbs}
           </GoogleMapReact>
