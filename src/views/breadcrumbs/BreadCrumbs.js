@@ -6,7 +6,8 @@ import GoogleMapReact from "google-map-react";
 import Supercluster from "supercluster";
 import ReactMarkdown from "react-markdown";
 import { fetchBreadcrumbs, saveBreadcrumb } from "../../Connectors/breadcrumbs";
-import Modal from "./modal";
+import CreateBreadcrumbModal from "./createBreadcrumbModal";
+import DisplayBreadcrumbModal from "./displayBreadcrumbModal";
 import config from "../../config";
 import "./breadcrumbs.css";
 
@@ -16,11 +17,11 @@ import "./breadcrumbs.css";
  * [x] retrieve users device location from browser
  * [x] button for creating breadcrumb at current location
  * [ ] blog post
- * [ ] modal for displaying breadcrumbs::: https://material-ui.com/components/dialogs/
+ * [x] modal for displaying breadcrumbs::: https://material-ui.com/components/dialogs/
  * [x] modal for creating breadcrumbs
  * [ ] explanation blurb of some sort
  * [x] better crumb icon
- * [ ] loading icon
+ * [ ] loading icon -- https://material-ui.com/components/progress/
  * [ ] stop user from double clicking the breadcrumb button
  * [x] display for multiple breadcrumbs
  * * cycle through by date
@@ -72,7 +73,11 @@ class GoogleMap extends Component {
       zoom: DEFAULT_ZOOM,
       bounds: null,
       modalOpen: false,
+      displayModalOpen: false,
       devicePosition: {},
+      displayClusters: [],
+      // displayMessages: [],
+      // displayLocation: {},
     };
     this.supercluster = new Supercluster({
       radius: 40,
@@ -85,6 +90,7 @@ class GoogleMap extends Component {
 
   convertClustersToMarkers = (clusters) => {
     return clusters.map((cluster) => {
+      console.log(cluster);
       const [longitude, latitude] = cluster.geometry.coordinates;
       const {
         cluster: isCluster,
@@ -106,6 +112,15 @@ class GoogleMap extends Component {
                 cursor: "pointer",
               }}
               onClick={() => {
+                if (this.state.zoom === 22) {
+                  clusters = this.supercluster.getLeaves(cluster.id);
+                  this.setState({
+                    displayModalOpen: true,
+                    displayClusters: [...clusters],
+                    center: { lat: latitude, lng: longitude },
+                  });
+                  return;
+                }
                 const expansionZoom = Math.min(
                   this.supercluster.getClusterExpansionZoom(cluster.id),
                   MAX_ZOOM
@@ -122,6 +137,10 @@ class GoogleMap extends Component {
         );
       }
 
+      this.closeMessageDisplayModal = () => {
+        this.setState({ displayModalOpen: false });
+      };
+
       return (
         <Marker
           key={`crumb-${cluster.properties.crumbId}`}
@@ -132,7 +151,12 @@ class GoogleMap extends Component {
             style={{ cursor: "pointer" }}
             className="breadcrumb-marker"
             onClick={(e) => {
-              alert(cluster.properties.message);
+              console.log("cluster: ", cluster);
+              this.setState({
+                displayModalOpen: true,
+                displayClusters: [{ ...cluster }],
+                center: { lat: latitude, lng: longitude },
+              });
               // so that the map onClick is not called
               e.stopPropagation();
             }}
@@ -254,9 +278,13 @@ class GoogleMap extends Component {
   render() {
     return (
       <div>
-        <Modal
+        <CreateBreadcrumbModal
           open={this.state.modalOpen}
           handleSave={(message) => {
+            if (!message) {
+              alert("breadcrumb needs a message; bare your soul");
+              return;
+            }
             this.setState({ modalOpen: false });
             this.saveNewBreadcrumb(
               this.state.devicePosition.lat,
@@ -267,7 +295,12 @@ class GoogleMap extends Component {
           handleClose={() => {
             this.setState({ modalOpen: false });
           }}
-        ></Modal>
+        ></CreateBreadcrumbModal>
+        <DisplayBreadcrumbModal
+          displayClusters={this.state.displayClusters}
+          open={this.state.displayModalOpen}
+          onClose={this.closeMessageDisplayModal}
+        />
         <button
           style={{ marginBottom: 20, marginLeft: 20 }}
           className="button"
