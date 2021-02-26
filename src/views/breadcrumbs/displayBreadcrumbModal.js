@@ -7,7 +7,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
-import PersonIcon from "@material-ui/icons/Person";
+import LocationOn from "@material-ui/icons/LocationOn";
 import { blue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
@@ -41,7 +41,7 @@ export default function SimpleDialog(props) {
           >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <PersonIcon />
+                <LocationOn />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={cluster.properties.message} />

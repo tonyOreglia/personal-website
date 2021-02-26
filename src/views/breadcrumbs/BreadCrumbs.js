@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import { fetchBreadcrumbs, saveBreadcrumb } from "../../Connectors/breadcrumbs";
 import CreateBreadcrumbModal from "./createBreadcrumbModal";
 import DisplayBreadcrumbModal from "./displayBreadcrumbModal";
+import LoadingIcon from "./loadingIcon";
 import config from "../../config";
 import "./breadcrumbs.css";
 
@@ -21,15 +22,14 @@ import "./breadcrumbs.css";
  * [x] modal for creating breadcrumbs
  * [ ] explanation blurb of some sort
  * [x] better crumb icon
- * [ ] loading icon -- https://material-ui.com/components/progress/
- * [ ] stop user from double clicking the breadcrumb button
+ * [x] loading icon -- https://material-ui.com/components/progress/
+ * [x] stop user from double clicking the breadcrumb button
  * [x] display for multiple breadcrumbs
  * * cycle through by date
  * * pop up with list of breadcrumbs
  * *
  * [ ] add link to instructions on enabling location on various devices
  * [ ] add option to add name / nickname
- * [ ] new breadcrumbs endpoint to handle retrieval of points within box
  *
  */
 
@@ -76,8 +76,7 @@ class GoogleMap extends Component {
       displayModalOpen: false,
       devicePosition: {},
       displayClusters: [],
-      // displayMessages: [],
-      // displayLocation: {},
+      loading: false,
     };
     this.supercluster = new Supercluster({
       radius: 40,
@@ -231,22 +230,28 @@ class GoogleMap extends Component {
    * create new breadcrumb at device's current location
    */
   createNewBreadcrumb = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        if (!position.coords.longitude || !position.coords.latitude) {
-          alert("you need to enable geo-location to drop a breadcrumb");
-          return;
-        }
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        this.setState({ modalOpen: true, devicePosition: { lat, lng } });
-      },
-      (error) => {
-        alert(`Error retrieving device location: ${error.message}`);
-        console.error(error);
-      },
-      { timeout: 4000, enableHighAccuracy: false, maximumAge: 0 }
-    );
+    this.setState({ loading: true }, () => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          if (!position.coords.longitude || !position.coords.latitude) {
+            alert("you need to enable geo-location to drop a breadcrumb");
+            return;
+          }
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          this.setState({
+            modalOpen: true,
+            devicePosition: { lat, lng },
+            loading: false,
+          });
+        },
+        (error) => {
+          alert(`Error retrieving device location: ${error.message}`);
+          console.error(error);
+        },
+        { timeout: 4000, enableHighAccuracy: false, maximumAge: 0 }
+      );
+    });
   };
 
   fetchBreadCrumbs = () => {
@@ -278,6 +283,7 @@ class GoogleMap extends Component {
   render() {
     return (
       <div>
+        <LoadingIcon open={this.state.loading}></LoadingIcon>
         <CreateBreadcrumbModal
           open={this.state.modalOpen}
           handleSave={(message) => {
@@ -306,7 +312,7 @@ class GoogleMap extends Component {
           className="button"
           onClick={this.createNewBreadcrumb}
         >
-          drop a breadcrumb!
+          Drop a breadcrumb!
         </button>
         <div style={{ height: "90vh", width: "100%" }}>
           <GoogleMapReact
