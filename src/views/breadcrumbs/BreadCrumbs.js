@@ -16,18 +16,16 @@ import "./breadcrumbs.css";
  * [x] new breadcrumb endpoint for retrieving all crumbs
  * [x] retrieve users device location from browser
  * [x] button for creating breadcrumb at current location
- * [ ] blog post
+ * [x] blog post
  * [x] modal for displaying breadcrumbs::: https://material-ui.com/components/dialogs/
  * [x] modal for creating breadcrumbs
- * [ ] explanation blurb of some sort
+ * [x] explanation blurb of some sort
  * [x] better crumb icon
  * [x] loading icon -- https://material-ui.com/components/progress/
  * [x] stop user from double clicking the breadcrumb button
  * [x] display for multiple breadcrumbs
- * * cycle through by date
- * * pop up with list of breadcrumbs
- * *
- * [ ] add link to instructions on enabling location on various devices
+ * [ ] cycle through by date
+ * [x] pop up with list of breadcrumbs
  * [ ] add option to add name / nickname
  *
  */
@@ -348,30 +346,38 @@ class BreadCrumbs extends Component {
         <article className="post">
           <header>
             <div className="title">
-              <h2>Breadcrumbs</h2>
+              <h2>
+                <Link to="/buildingBreadcrumbs">Breadcrumbs</Link>
+              </h2>
             </div>
           </header>
           <p>
             This is a demo of an idea that{" "}
             <a href="https://www.linkedin.com/in/josh-kemp-440">Josh Kemp</a>{" "}
-            and I envisioned while surfing; it's called BreadCrumbs.
+            and I envisioned while surfing; it's called BreadCrumbs. Below, you
+            can click the button to "drop a breadcrumb" message; or browse the
+            map to see messages created by past visitors.
           </p>
-          <p>"It's like exploring history for a place."</p>
-          <p>Read more about Breadcrumbs here.</p>
-
-          <p>
-            {" "}
-            Breadcrumbs backend server source available{" "}
-            <a href="https://github.com/tonyOreglia/breadcrumbs">here</a>.
-            <p>
-              {" "}
-              Google Maps frontend integration source available{" "}
-              <a href="https://github.com/tonyOreglia/personal-website/tree/feature/breadCrumbsDemo/src/views/breadcrumbs">
-                here
+          <ul>
+            <li>
+              <Link to="/buildingBreadcrumbs">
+                Read more about Location Based Social Networking and how this
+                demo works
+              </Link>
+            </li>
+            <li>
+              <a href="https://github.com/tonyOreglia/breadcrumbs">
+                Breadcrumbs server code available
               </a>
               .
-            </p>
-          </p>
+            </li>
+            <li>
+              <a href="https://github.com/tonyOreglia/personal-website/tree/feature/breadCrumbsDemo/src/views/breadcrumbs">
+                Breadcrumbs frontend demo code available
+              </a>
+              .
+            </li>
+          </ul>
           <div style={{ position: "relative", width: "100%", height: "40em" }}>
             <GoogleMap />
           </div>

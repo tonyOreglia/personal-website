@@ -36,10 +36,11 @@ Note that, port 80 must be opened via the router configuration settings for cert
 - [ ] make tiddlywiki deep linkable
 - [ ] fix scrolling issues
   - [ ] tiddlywiki scrolling issue
+- [ ] refactor the ugly blog post shenanigans
 
 
 ## add project and blogpost for breadcrumbs Tasks
-- [ ] implement API calls from react to breadcrumbs backend
+- [X] ~~*implement API calls from react to breadcrumbs backend*~~ [2021-02-27]
   - [ ] add config for local / production URL 
 - [ ] spin up breadcrumbs on server
   - [ ] install postgresql / docker on server 

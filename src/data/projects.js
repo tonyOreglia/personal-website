@@ -5,7 +5,7 @@ const data = [
     subtitle:
       "BreadCrumbs allow users to create and retrieve location based data",
     link: "/breadcrumbs",
-    image: "/images/projects/breadcrumbs.jpg",
+    image: "/images/free-the-love.jpeg",
     date: "2021-02-06",
     desc: "BreadCrumbs allow users to create and retrieve location based data",
   },
