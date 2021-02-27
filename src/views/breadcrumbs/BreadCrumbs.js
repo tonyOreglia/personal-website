@@ -4,7 +4,6 @@ import Main from "../../layouts/Main";
 import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import Supercluster from "supercluster";
-import ReactMarkdown from "react-markdown";
 import { fetchBreadcrumbs, saveBreadcrumb } from "../../Connectors/breadcrumbs";
 import CreateBreadcrumbModal from "./createBreadcrumbModal";
 import DisplayBreadcrumbModal from "./displayBreadcrumbModal";
@@ -83,7 +82,6 @@ class GoogleMap extends Component {
       maxZoom: MAX_ZOOM,
     });
     this.geoJSONPoints = null;
-    // retrieve data from DB; generate clusters; generate markers for cluster; finally update state
     this.fetchBreadCrumbs();
   }
 
@@ -172,7 +170,7 @@ class GoogleMap extends Component {
     const { lat, lng } = clickEvent;
     const message = prompt("Please enter your breadcrumb message");
     if (!message) {
-      alert("breadcrumb needs a message; bare your soul");
+      alert("every breadcrumb needs a message; bare your soul");
       return;
     }
 
@@ -256,9 +254,7 @@ class GoogleMap extends Component {
 
   fetchBreadCrumbs = () => {
     fetchBreadcrumbs().then((res) => {
-      // const markers = convertBreadCrumbsToGoogleMapMarkers(res.data);
       this.geoJSONPoints = transformBreadCrumbsToGeoJsonPoints(res.data);
-
       this.supercluster.load(this.geoJSONPoints);
 
       this.setState({
@@ -312,7 +308,7 @@ class GoogleMap extends Component {
           className="button"
           onClick={this.createNewBreadcrumb}
         >
-          Drop a breadcrumb!
+          click here to Drop a breadcrumb in your current location!
         </button>
         <div style={{ height: "90vh", width: "100%" }}>
           <GoogleMapReact
@@ -355,13 +351,27 @@ class BreadCrumbs extends Component {
               <h2>Breadcrumbs</h2>
             </div>
           </header>
-          <ReactMarkdown
-            source={this.props.breadcrumbsData.desc}
-            renderers={{
-              link: RouterLink,
-            }}
-            escapeHtml={false}
-          />
+          <p>
+            This is a demo of an idea that{" "}
+            <a href="https://www.linkedin.com/in/josh-kemp-440">Josh Kemp</a>{" "}
+            and I envisioned while surfing; it's called BreadCrumbs.
+          </p>
+          <p>"It's like exploring history for a place."</p>
+          <p>Read more about Breadcrumbs here.</p>
+
+          <p>
+            {" "}
+            Breadcrumbs backend server source available{" "}
+            <a href="https://github.com/tonyOreglia/breadcrumbs">here</a>.
+            <p>
+              {" "}
+              Google Maps frontend integration source available{" "}
+              <a href="https://github.com/tonyOreglia/personal-website/tree/feature/breadCrumbsDemo/src/views/breadcrumbs">
+                here
+              </a>
+              .
+            </p>
+          </p>
           <div style={{ position: "relative", width: "100%", height: "40em" }}>
             <GoogleMap />
           </div>

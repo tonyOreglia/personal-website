@@ -29,7 +29,7 @@ export default class FormDialog extends Component {
           onClose={this.props.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Create a Breadcrumb</DialogTitle>
+          <DialogTitle id="form-dialog-title">Drop a Breadcrumb</DialogTitle>
           <DialogContent>
             <DialogContentText>
               To save a breadcrumb, enter a message and click Save.

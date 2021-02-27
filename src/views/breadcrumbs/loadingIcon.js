@@ -23,12 +23,9 @@ export default function CircularIndeterminate(props) {
   return (
     <div className={classes.root}>
       <Backdrop className={classes.backdrop} open={open} onClick={() => {}}>
-        <CircularProgress style={{ color: "blue" }} />
         <CircularProgress style={{ color: "red" }} />
-        <CircularProgress style={{ color: "yellow" }} />
+        <CircularProgress style={{ color: "white" }} />
         <CircularProgress style={{ color: "blue" }} />
-        <CircularProgress style={{ color: "green" }} />
-        <CircularProgress style={{ color: "red" }} />
       </Backdrop>
     </div>
   );
