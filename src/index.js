@@ -10,9 +10,12 @@ import NotFound from "./views/NotFound";
 import AssemblyGuide from "./views/blog/AssemblyGuide/AssemblyGuide";
 import Tetris from "./views/Tetris";
 import Snake from "./views/Snake";
+import BreadCrumbs from "./views/breadcrumbs/BreadCrumbs";
 
 import BlogDynamicIp from "./views/blog/dynamicIp";
 import DockerPostgres from "./views/blog/dockerPostgres";
+import BreadcrumbsPost from "./views/blog/breadcrumbs";
+
 import GuideResources from "./views/blog/AssemblyGuide/Resources";
 import GuideGettingStarted from "./views/blog/AssemblyGuide/GettingStarted";
 import GuideConditions from "./views/blog/AssemblyGuide/Conditions";
@@ -22,6 +25,8 @@ import GuideGdb from "./views/blog/AssemblyGuide/Gdb";
 import GuidePrinting from "./views/blog/AssemblyGuide/Printing";
 import GuideQuickReference from "./views/blog/AssemblyGuide/QuickReference";
 import GuideStringLength from "./views/blog/AssemblyGuide/StringLength";
+
+import data from "./data/projects";
 
 import Main from "./layouts/Main";
 import "./static/css/main.scss";
@@ -65,8 +70,20 @@ ReactDOM.render(
       <Route path="/tetris" component={Tetris} />
       <Route path="/snake" component={Snake} />
 
+      <Route
+        path="/breadcrumbs"
+        render={(props) => (
+          <BreadCrumbs
+            {...props}
+            breadcrumbsData={data.find((d) => d.title === "BreadCrumbs")}
+          />
+        )}
+      />
+
       <Route path="/dynamicip" component={BlogDynamicIp} />
       <Route path="/dockerpostgres" component={DockerPostgres} />
+      <Route path="/buildingBreadcrumbs" component={BreadcrumbsPost} />
+
       <Route path="/guidegettingstarted" component={GuideGettingStarted} />
       <Route path="/guideresources" component={GuideResources} />
       <Route path="/guidegdb" component={GuideGdb} />

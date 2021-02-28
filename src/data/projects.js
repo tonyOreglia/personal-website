@@ -1,6 +1,15 @@
 // TODO Add a couple lines about each project
 const data = [
   {
+    title: "BreadCrumbs",
+    subtitle:
+      "BreadCrumbs allow users to create and retrieve location based data",
+    link: "/breadcrumbs",
+    image: "/images/free-the-love.jpeg",
+    date: "2021-02-06",
+    desc: "BreadCrumbs allow users to create and retrieve location based data",
+  },
+  {
     title: "GLEE: Golang Chess Engine with React Frontend",
     subtitle: "Golang Chess Engine with React Frontend",
     link: "/chess",
@@ -17,7 +26,8 @@ const data = [
     link: "/assembly",
     image: "/images/projects/nasm.png",
     date: "2019-01-06",
-    desc: "",
+    desc:
+      "A guide to learning Assembly Language with re-usable Docker image with debuggable throughput for VS Code",
   },
   {
     title: "Tetris",
@@ -25,7 +35,7 @@ const data = [
     link: "/tetris",
     image: "/images/projects/tetris.jpeg",
     date: "2020-12-20",
-    desc: "",
+    desc: "A fun game built with p5 library",
   },
   {
     title: "Snake",
@@ -33,7 +43,7 @@ const data = [
     link: "/snake",
     image: "/images/projects/snake.jpg",
     date: "2020-12-21",
-    desc: "",
+    desc: "A fun game built with p5 library",
   },
 ];
 
