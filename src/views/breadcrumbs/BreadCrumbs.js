@@ -368,17 +368,33 @@ class BreadCrumbs extends Component {
             </li>
             <li>
               <a href="https://github.com/tonyOreglia/breadcrumbs">
-                Breadcrumbs server code available
+                Breadcrumbs server code here
               </a>
-              .
             </li>
             <li>
               <a href="https://github.com/tonyOreglia/personal-website/tree/feature/breadCrumbsDemo/src/views/breadcrumbs">
-                Breadcrumbs frontend demo code available
+                Breadcrumbs frontend demo code here
               </a>
-              .
             </li>
           </ul>
+          <p>
+            <b>Instructions:</b>
+            <ul>
+              <li className="breadcrumb-marker">
+                Click the{" "}
+                <img src="/images/marker.png" alt="breadcrumbs for all" /> to
+                see the breadcrumb message dropped at that locations
+              </li>
+              <li className="breadcrumb-marker">
+                Click the{" "}
+                <img
+                  src="/images/cluster-marker.png"
+                  alt="breadcrumbs for all"
+                />{" "}
+                to zoom in on a cluster of breadcrumb messages.
+              </li>
+            </ul>
+          </p>
           <div style={{ position: "relative", width: "100%", height: "40em" }}>
             <GoogleMap />
           </div>

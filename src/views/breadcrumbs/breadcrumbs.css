@@ -1,4 +1,5 @@
 .cluster-marker {
+    white-space: nowrap;
     color: #fff;
     background: #1978c8;
     border-radius: 50%;
