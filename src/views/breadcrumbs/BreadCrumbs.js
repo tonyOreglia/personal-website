@@ -241,6 +241,7 @@ class GoogleMap extends Component {
           });
         },
         (error) => {
+          this.setState({ loading: false });
           alert(`Error retrieving device location: ${error.message}`);
           console.error(error);
         },
