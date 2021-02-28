@@ -27,9 +27,14 @@ server {
 
   location /tw {
     proxy_pass http://127.0.0.1:444/;
-    # proxy_set_header	Host	$host;
-    # proxy_set_header	X-Real-IP	 $remote_addr;
-    # proxy_set_header	X-Forwarded-For	 $proxy_add_x_forwarded_for;
+  }
+
+  location /note/ {
+    proxy_pass http://127.0.0.1:8081/note/;
+  }
+
+  location /allNotes {
+    proxy_pass http://127.0.0.1:8081/allNotes/;
   }
 }
 
