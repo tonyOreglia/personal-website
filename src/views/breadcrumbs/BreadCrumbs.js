@@ -8,7 +8,6 @@ import { fetchBreadcrumbs, saveBreadcrumb } from "../../Connectors/breadcrumbs";
 import CreateBreadcrumbModal from "./createBreadcrumbModal";
 import DisplayBreadcrumbModal from "./displayBreadcrumbModal";
 import LoadingIcon from "./loadingIcon";
-import config from "../../config";
 import "./breadcrumbs.css";
 
 /**
@@ -310,7 +309,9 @@ class GoogleMap extends Component {
         </button>
         <div style={{ height: "90vh", width: "100%" }}>
           <GoogleMapReact
-            bootstrapURLKeys={{ key: config.googleMapsJsApiKey }}
+            bootstrapURLKeys={{
+              key: process.env.REACT_APP_GOOGLE_APS_JS_API_KEY,
+            }}
             defaultCenter={DEFAULT_CENTER}
             center={this.state.center}
             defaultZoom={DEFAULT_ZOOM}
