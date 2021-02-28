@@ -30,7 +30,7 @@ import "./breadcrumbs.css";
  */
 
 const MAX_ZOOM = 22;
-const DEFAULT_ZOOM = 20;
+const DEFAULT_ZOOM = 6;
 const DEFAULT_CENTER = { lat: 38.6861617, lng: -9.3504081 };
 
 const Marker = ({ children }) => children;

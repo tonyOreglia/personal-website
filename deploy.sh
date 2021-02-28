@@ -1,5 +1,4 @@
 #!/bin/bash
-echo $PATH
 echo 'getting latest...'
 git pull
 echo 'installing libs...'
