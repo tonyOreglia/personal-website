@@ -1,4 +1,5 @@
 import React from "react";
+import * as moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
@@ -44,7 +45,12 @@ export default function SimpleDialog(props) {
                 <LocationOn />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={cluster.properties.message} />
+            <ListItemText
+              primary={cluster.properties.message}
+              secondary={moment
+                .unix(cluster.properties.creationTimeUnix)
+                .format("MMMM Do YYYY, h:mm:ss a")}
+            />
           </ListItem>
         ))}
       </List>
