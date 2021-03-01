@@ -355,7 +355,9 @@ class BreadCrumbs extends Component {
           </header>
           <p>
             This is a demo of an idea that{" "}
-            <a href="https://www.linkedin.com/in/josh-kemp-440">Josh Kemp</a>{" "}
+            <a href="https://www.linkedin.com/in/josh-kemp-440a3b83/">
+              Josh Kemp
+            </a>{" "}
             and I envisioned while surfing; it's called BreadCrumbs. Below, you
             can click the button to "drop a breadcrumb" message; or browse the
             map to see messages created by past visitors.

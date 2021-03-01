@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "Path: ${PATH}"
+user=$(whoami)
+echo "whoami: ${user}"
 echo 'getting latest...'
 git pull
 echo 'installing libs...'
