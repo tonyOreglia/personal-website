@@ -11,13 +11,20 @@ export default class FormDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      textFieldValue: "",
+      textFieldValueMsg: "",
+      textFieldValueName: "",
     };
   }
 
-  _handleTextFieldChange = (e) => {
+  _handleTextFieldMsgChange = (e) => {
     this.setState({
-      textFieldValue: e.target.value,
+      textFieldValueMsg: e.target.value,
+    });
+  };
+
+  _handleTextFieldNameChange = (e) => {
+    this.setState({
+      textFieldValueName: e.target.value,
     });
   };
 
@@ -36,13 +43,19 @@ export default class FormDialog extends Component {
             </DialogContentText>
             <TextField
               autoFocus
-              margin="dense"
               id="name"
-              label="Your Breadcrumb Message"
-              type="email"
+              label="Your Name (optional)"
               fullWidth
               value={this.state.textFieldValue}
-              onChange={this._handleTextFieldChange}
+              onChange={this._handleTextFieldNameChange}
+            />
+            <TextField
+              margin="dense"
+              id="msg"
+              label="Your Breadcrumb Message"
+              fullWidth
+              value={this.state.textFieldValue}
+              onChange={this._handleTextFieldMsgChange}
             />
           </DialogContent>
           <DialogActions>
@@ -50,7 +63,12 @@ export default class FormDialog extends Component {
               Cancel
             </Button>
             <Button
-              onClick={() => this.props.handleSave(this.state.textFieldValue)}
+              onClick={() =>
+                this.props.handleSave(
+                  this.state.textFieldValueMsg,
+                  this.state.textFieldValueName
+                )
+              }
               color="primary"
             >
               Save

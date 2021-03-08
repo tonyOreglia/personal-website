@@ -47,9 +47,9 @@ export default function SimpleDialog(props) {
             </ListItemAvatar>
             <ListItemText
               primary={cluster.properties.message}
-              secondary={moment
-                .unix(cluster.properties.creationTimeUnix)
-                .format("MMMM Do YYYY, h:mm:ss a")}
+              secondary={clusterPropertiesToSecondaryItemText(
+                cluster.properties
+              )}
             />
           </ListItem>
         ))}
@@ -57,3 +57,13 @@ export default function SimpleDialog(props) {
     </Dialog>
   );
 }
+
+const clusterPropertiesToSecondaryItemText = (clusterProps) => {
+  const date = moment
+    .unix(clusterProps.creationTimeUnix)
+    .format("MMMM Do YYYY, h:mm:ss a");
+  if (clusterProps.userName) {
+    return `${clusterProps.userName} - ${date}`;
+  }
+  return date;
+};

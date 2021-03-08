@@ -35,29 +35,33 @@ const DEFAULT_CENTER = { lat: 38.6861617, lng: -9.3504081 };
 
 const Marker = ({ children }) => children;
 
-const newGeoJsonPoint = (id, message, lng, lat, timeUnix) => ({
-  type: "Feature",
-  properties: {
-    cluster: false,
-    crumbId: id,
-    message: message,
-    creationTimeUnix: timeUnix || moment.utc().unix(),
-  },
-  geometry: {
-    type: "Point",
-    coordinates: [lng, lat],
-  },
-});
+const newGeoJsonPoint = ({ id, message, lng, lat, timeUnix, userName }) => {
+  return {
+    type: "Feature",
+    properties: {
+      cluster: false,
+      crumbId: id,
+      message,
+      creationTimeUnix: timeUnix || moment.utc().unix(),
+      userName,
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [lng, lat],
+    },
+  };
+};
 
 const transformBreadCrumbsToGeoJsonPoints = (crumbs) =>
   crumbs.map((crumb, i) =>
-    newGeoJsonPoint(
-      i,
-      crumb.message,
-      crumb.longitude,
-      crumb.latitude,
-      moment.utc(crumb.timestamp).unix()
-    )
+    newGeoJsonPoint({
+      id: i,
+      message: crumb.message,
+      lng: crumb.longitude,
+      lat: crumb.latitude,
+      timeUnix: moment.utc(crumb.timestamp).unix(),
+      userName: crumb.userName,
+    })
   );
 
 class GoogleMap extends Component {
@@ -84,7 +88,6 @@ class GoogleMap extends Component {
 
   convertClustersToMarkers = (clusters) => {
     return clusters.map((cluster) => {
-      console.log(cluster);
       const [longitude, latitude] = cluster.geometry.coordinates;
       const {
         cluster: isCluster,
@@ -181,7 +184,13 @@ class GoogleMap extends Component {
         }
 
         this.geoJSONPoints.push(
-          newGeoJsonPoint(this.geoJSONPoints.length, message, lng, lat)
+          newGeoJsonPoint({
+            id: this.geoJSONPoints.length,
+            message,
+            lng,
+            lat,
+            userName: "",
+          })
         );
 
         this.supercluster.load(this.geoJSONPoints);
@@ -199,8 +208,8 @@ class GoogleMap extends Component {
     );
   };
 
-  saveNewBreadcrumb = (lat, lng, message) => {
-    saveBreadcrumb(lat, lng, message).then((res) => {
+  saveNewBreadcrumb = (lat, lng, message, userName) => {
+    saveBreadcrumb(lat, lng, message, userName).then((res) => {
       if (res.status !== 200) {
         alert(
           "sorry, your breadcrumb failed to save; tell Tony\n\n",
@@ -209,7 +218,13 @@ class GoogleMap extends Component {
       }
 
       this.geoJSONPoints.push(
-        newGeoJsonPoint(this.geoJSONPoints.length, message, lng, lat)
+        newGeoJsonPoint({
+          id: this.geoJSONPoints.length,
+          message,
+          lng,
+          lat,
+          userName,
+        })
       );
 
       this.supercluster.load(this.geoJSONPoints);
@@ -280,7 +295,7 @@ class GoogleMap extends Component {
         <LoadingIcon open={this.state.loading}></LoadingIcon>
         <CreateBreadcrumbModal
           open={this.state.modalOpen}
-          handleSave={(message) => {
+          handleSave={(message, userName) => {
             if (!message) {
               alert("breadcrumb needs a message; bare your soul");
               return;
@@ -289,7 +304,8 @@ class GoogleMap extends Component {
             this.saveNewBreadcrumb(
               this.state.devicePosition.lat,
               this.state.devicePosition.lng,
-              message
+              message,
+              userName
             );
           }}
           handleClose={() => {
