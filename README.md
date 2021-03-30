@@ -16,6 +16,25 @@ Note that, port 80 must be opened via the router configuration settings for cert
 - Port 443 needs to be open on the router for the https to work.
 - See `/etc/nginx/sites-available/tonycodes.com` for nginx configuration (copied here to local config)
 
+### Nginx (running on server)
+
+Get Status of nginx
+```
+$ sudo systemctl status nginx
+```
+
+Stop/start nginx
+```
+$ sudo systemctl stop nginx
+$ sudo systemctl start nginx
+```
+
+Restart Nginx
+```
+sudo systemctl reload nginx
+```
+
+
 # To Do
 
 - [x] ~~_remove scroll bar to enable snake game to work without disruption OR link out of the app for snake OR make snake game work with mouse pointer_~~ [2021-01-06] made it mouse controlled

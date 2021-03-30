@@ -15,6 +15,7 @@ import BreadCrumbs from "./views/breadcrumbs/BreadCrumbs";
 import BlogDynamicIp from "./views/blog/dynamicIp";
 import DockerPostgres from "./views/blog/dockerPostgres";
 import BreadcrumbsPost from "./views/blog/breadcrumbs";
+import BabelRoulettePost from "./views/blog/babelRoulette";
 
 import GuideResources from "./views/blog/AssemblyGuide/Resources";
 import GuideGettingStarted from "./views/blog/AssemblyGuide/GettingStarted";
@@ -83,6 +84,7 @@ ReactDOM.render(
       <Route path="/dynamicip" component={BlogDynamicIp} />
       <Route path="/dockerpostgres" component={DockerPostgres} />
       <Route path="/buildingBreadcrumbs" component={BreadcrumbsPost} />
+      <Route path="/babelRoulettePost" component={BabelRoulettePost} />
 
       <Route path="/guidegettingstarted" component={GuideGettingStarted} />
       <Route path="/guideresources" component={GuideResources} />

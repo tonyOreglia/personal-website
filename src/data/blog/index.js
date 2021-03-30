@@ -1,5 +1,14 @@
 export const data = [
   {
+    title: "Babel Roulette",
+    subtitle: "Connect instantly with native speakers",
+    link: "/BabelRoulettePost",
+    date: "2021-03-30",
+    id: 5,
+    author: "Tony Oreglia",
+    blogIcon: "/images/language-learning.png",
+  },
+  {
     title: "Location Based Social Networking",
     subtitle: "",
     link: "/buildingBreadcrumbs",
