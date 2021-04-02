@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import Main from "../../layouts/Main";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import PropTypes from "prop-types";
 import icon from "../../images/me_face.jpg";
+
+const renderers = {
+  code: ({ language, value }) => {
+    return (
+      <SyntaxHighlighter style={dark} language={language} children={value} />
+    );
+  },
+  link: RouterLink,
+};
 
 // Make all hrefs react router links
 function RouterLink(props) {
@@ -39,10 +50,11 @@ const Post = ({ data }) => {
           <img src={data.blogIcon} alt="" />
         </span>
         <ReactMarkdown
+          renderers={renderers}
           source={data.post}
-          renderers={{
-            link: RouterLink,
-          }}
+          // renderers={{
+          //   link: RouterLink,
+          // }}
           escapeHtml={false}
         />
         <footer>
