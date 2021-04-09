@@ -1,6 +1,15 @@
 // TODO Add a couple lines about each project
 const data = [
   {
+    title: "Babel Roulette",
+    subtitle:
+      "Babel Roulette connects language learners for instance conversation",
+    link: "/babelroulette",
+    image: "/images/language-learning.png",
+    date: "2021-03-30",
+    desc: "Babel Roulette connects language learners for instance conversation",
+  },
+  {
     title: "BreadCrumbs",
     subtitle:
       "BreadCrumbs allow users to create and retrieve location based data",
