@@ -4,7 +4,7 @@ const data = [
     title: "Babel Roulette",
     subtitle:
       "Babel Roulette connects language learners for instance conversation",
-    link: "https://tonycodes.com/babelroulette",
+    link: "/babelroulette",
     image: "/images/language-learning.png",
     date: "2021-03-30",
     desc: "Babel Roulette connects language learners for instance conversation",

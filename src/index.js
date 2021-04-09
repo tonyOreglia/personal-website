@@ -70,6 +70,13 @@ ReactDOM.render(
       <Route path="/assembly" component={AssemblyGuide} />
       <Route path="/tetris" component={Tetris} />
       <Route path="/snake" component={Snake} />
+      <Route
+        path="/babelRoulette"
+        component={() => {
+          window.location.href = "https://tonycodes.com/babelroulette";
+          return null;
+        }}
+      />
 
       <Route
         path="/breadcrumbs"
