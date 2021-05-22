@@ -26,16 +26,45 @@ server {
    }
 
   location /tw {
-    proxy_pass http://127.0.0.1:444/;
+    proxy_pass http://127.0.0.1:1444/;
   }
 
-  location /note/ {
-    proxy_pass http://127.0.0.1:8081/note/;
+  location /note {
+    proxy_pass http://127.0.0.1:8081/note;
   }
 
   location /allNotes {
-    proxy_pass http://127.0.0.1:8081/allNotes/;
+    proxy_pass http://127.0.0.1:8081/allNotes;
   }
+
+  location /babelroulette/ {
+    proxy_pass http://127.0.0.1:8082/;
+    proxy_redirect ~/(.*)$ /babelroulette/$1;
+  }
+
+  location /calibre {
+    proxy_bind 	$server_addr;
+    proxy_pass	http://127.0.0.1:8083;
+    proxy_set_header        Host            $http_host;
+    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header        X-Scheme        $scheme;
+    proxy_set_header        X-Script-Name   /calibre; 
+  } 
+
+  # Requests for socket.io are passed on to Node on port 8082
+  location ~* \.io {
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-NginX-Proxy false;
+
+      proxy_pass http://localhost:8082;
+      proxy_redirect off;
+
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
 }
 
 map $http_upgrade $connection_upgrade {
