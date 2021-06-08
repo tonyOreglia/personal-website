@@ -2,5 +2,5 @@
 SHELL=/bin/bash
 30 2 * * * /home/tony/dev/tiddlywiki/utils/copyPublicTiddlers.sh > /home/tony/logs/copy-tiddlywiki-to-public.log 2>&1
 @hourly /home/tony/dev/personal-website/utils/digOceanDynamicIp.sh
-30 2 * * * /home/tony/dev/tiddlywiki/save-private-tiddly.sh > /home/tony/logs/save-private-tiddlywiki.log > 2>&1
+30 2 * * * /home/tony/dev/tiddlywiki/save-private-tiddly.sh > /home/tony/logs/save-private-tiddlywiki.log 2>&1
 ~
