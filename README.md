@@ -8,7 +8,8 @@
 - To renew letsencrypt certificates run: (put this in a bash script)
 
 ```
-sudo certbot --nginx certonly -d www.tonycodes.com,tonycodes.com
+$ sudo apt install certbot python3-certbot-nginx
+$ sudo certbot --nginx certonly -d www.tonycodes.com,tonycodes.com
 ```
 
 Note that, port 80 must be opened via the router configuration settings for certbot to make the necessary server connection. This is how it validates that you do in fact have control over the machine you are generating a certificate for.
