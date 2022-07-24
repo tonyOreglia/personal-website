@@ -10,7 +10,7 @@ server {
   listen 443 ssl;
 
   server_name tonycodes.com;
-  root /root/tonycodes.com;
+  root /var/www/html/tonycodes.com;
   index index.html;
 
   ssl_certificate /etc/letsencrypt/live/tonycodes.com/fullchain.pem;

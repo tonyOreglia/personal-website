@@ -9,5 +9,5 @@ npm i
 echo 'building...'
 npm run build
 echo 'moving artifacts to hosting folder...'
-rm -rf /root/tonycodes.com/*
-mv build/* /root/tonycodes.com/
+rm -rf /var/www/html/tonycodes.com/*
+mv build/* /var/www/html/tonycodes.com/
